@@ -7,14 +7,117 @@ import java.util.*;
 public class Lenguaje {
 	
 	public static  void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("Nombre:");
+		String nombre= s.nextLine();
+		System.out.println("hola " + nombre);/**/
 		
-		List<Integer>lista = new ArrayList<>();
-		lista.add(10);
-		lista.add(20);
-		lista.add(30);
-		System.out.println(lista);
+		s.close();
+	}
+	
+	public static void excepciones() {
 		
+		int div=0,a =32,b=6,c=0;
+		try {
+			
+			System.out.println("INICIO");
+			div=a/0;
+			System.out.println(div);
+			System.out.println("FIN");
+			
+		}catch(ArithmeticException ex){
+			System.out.println("Ha saltado una ArithmeticException");
+			div=Integer.MAX_VALUE;
+			System.out.println(ex.getCause());
+			System.out.println(ex.getLocalizedMessage());
+			System.out.println(ex.getMessage());
+			
+			return;
+			
+		}catch(Exception e) {
 		
+			System.out.println("Ha saltado una excepcion");
+
+			System.out.println(e.getCause());
+		}finally {
+			System.out.println("Soy el finally y siempre me ejecuto");
+			System.out.println("porque puedo");
+		}
+	}
+	public static void bucles() {
+		String []arr= {"uno","dos","tres"};/*
+		for(int i=0;i<arr.length;i++) {
+			System.out.println(arr[i]);
+		}*/
+		
+		etiqueta:for(String s :arr) {//foreach
+			System.out.println(s);
+			if("dos".equals(s)) {
+				System.out.println("Encontrado");
+				//break;
+				break etiqueta;
+			}
+		}
+		String s;
+		boolean encontrado=false;
+		for(int i=0;i<arr.length && !encontrado;i++) {
+			s =arr[i];
+			System.out.println("Comparando "+s);
+			if("dos".equals(s)) {
+				System.out.println("Encontrado");
+				encontrado=true;
+			}
+		}
+		/*int opcion=2,dias=0;
+		switch(opcion) {
+			case 2:
+				dias=28;
+				break;
+			case 4:
+				break;
+			case 11:
+				dias=30;
+				break;
+			default:
+				dias=31;
+		}
+		System.out.println(dias);*/
+	}
+	public static void control(){
+		
+	}
+	public static void operaciones() {
+		int x=5;
+		int y;
+		System.out.println(1 <= x && x <= 10);
+		
+		System.out.println(5 | 3);//101 OR 011 = 111
+		System.out.println(y= x +=7);
+		System.out.println(x >y ? x : y);
+		System.out.println(y++);//saca 5 y despues suma 
+		System.out.println(++y);//suma y saca 6
+	}
+	public static void collecciones() {
+		//COLLECCIONES
+				List<Integer>lista = new ArrayList<>();
+				lista.add(10);
+				lista.add(20);
+				lista.add(30);
+				System.out.println(lista);
+				
+				Set<Integer> s = new HashSet<>();//no permite repetidos
+				s.add(4);
+				s.add(5);
+				s.add(5);
+				
+				System.out.println(s);
+				
+				//MAPA
+				Map<String,String> m = new HashMap<>();
+				m.put("casa", "home");
+				m.put("perro", "dog");
+				
+				System.out.println(m.get("perro"));
 	}
 	public static void array() {
 		int tamano =3;
@@ -29,6 +132,7 @@ public class Lenguaje {
 		char [][] ajedrez= new char[8][8];
 		
 	}
+	@SuppressWarnings("deprecation")
 	public static void fechas() {
 		//1.0
 				Date d =new Date();
