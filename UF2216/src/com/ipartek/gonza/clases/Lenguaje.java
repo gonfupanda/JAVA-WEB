@@ -1,6 +1,7 @@
 package com.ipartek.gonza.clases;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -8,13 +9,24 @@ public class Lenguaje {
 	
 	public static  void main(String[] args) {
 		Scanner s = new Scanner(System.in);
+		System.out.println("Numero:");
+		BigInteger num=s.nextBigInteger();
+		
+		System.out.println(recursivas(num));
+	}
+	public static BigInteger recursivas(BigInteger x) {//sacar el factorial //como usar el BigInteger
+		if(BigInteger.ONE.compareTo(x)==1)return BigInteger.ONE;
+		return x.multiply(recursivas(x.subtract(BigInteger.ONE))) ;
+	}
+	
+	public static void entrada() {
+		Scanner s = new Scanner(System.in);
 		System.out.println("Nombre:");
 		String nombre= s.nextLine();
 		System.out.println("hola " + nombre);/**/
 		
 		s.close();
 	}
-	
 	public static void excepciones() {
 		
 		int div=0,a =32,b=6,c=0;
