@@ -1,9 +1,10 @@
 package com.ipartek.gonza.objetos.pojos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Espacio {
+public class Espacio implements Serializable{
 
 	private long id;
 	private String nombre;

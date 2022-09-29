@@ -1,7 +1,10 @@
 package com.ipartek.gonza.objetos.pojos;
 
-public class Persona {
-	private long id;
+import java.io.Serializable;
+
+public class Persona implements Serializable{
+	
+	private Long id;
 	private String nombre;
 	
 	//CONSTANTES
@@ -35,7 +38,7 @@ public class Persona {
 	//GETTERS Y SETTERS
 	
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -45,9 +48,9 @@ public class Persona {
 	public static void setFormato(Formato formato) {
 		Persona.formato = formato;
 	}
-	public void setId(long id) {	
-		if( id < 0  ) {
-			throw new RuntimeException("No se admiten Id negativos");
+	public void setId(Long id) {	
+		if( id != null && id < 0) {
+			throw new PojoExceptions("No se admiten Id negativos");
 		}
 		this.id = id;	
 		
