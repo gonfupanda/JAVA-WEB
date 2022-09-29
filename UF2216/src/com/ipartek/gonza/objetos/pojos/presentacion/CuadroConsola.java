@@ -5,19 +5,23 @@ import static com.ipartek.gonza.biblioteca.Consola.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ipartek.gonza.objetos.pojos.ejercicios.Autor;
 import com.ipartek.gonza.objetos.pojos.ejercicios.Cuadro;
 
 public class CuadroConsola {
 
 	public static void main(String[] args) {
-		Cuadro c = new Cuadro();
+		
 		
 		List<Cuadro> cuadros = new ArrayList<>();
 		boolean opt=true;
-		boolean seguir;
+		boolean esta=false;;
 		
 		do {
-			c.setAutor(gString("Introduce el nombre del autor"));
+			esta=false;
+			Cuadro c = new Cuadro();
+			Autor a=new Autor(gString("Introduce el nombre del autor"),gString("Introduce el nombre del autor"));
+			c.setAutor(a);
 			c.setTitulo(gString("Introduce el titulo del cuadro"));
 			c.setAltura(gInt("Introduce la altura del cuadro"));
 			c.setAnchura(gInt("Introduce la altura del cuadro"));
@@ -25,21 +29,22 @@ public class CuadroConsola {
 			c.setRestaurado(gBoolean("Introduce si esta restaurado"));	
 			c.setPrecio(gDouble("Introduce el precio del cuadro"));	
 			
-			cuadros.add(c);
-			do {
-				seguir=true;
-				String a =gString("Desea continuar añadiendo Cuadros?(S/N)");
-				a=a.toLowerCase();
-				if(a.equals("s")) {
-					opt=true;
-				}else if(a.equals("n")){
-					
-					opt=false;
-				}else {
-					System.out.println("Introduce un dato valido");
-					seguir=false;
+			//cuadros.add(cuadros.size(),c);
+			for(Cuadro cc:cuadros) {
+				if (cc.getTitulo().equalsIgnoreCase(c.getTitulo()) && a.getNombre().equalsIgnoreCase(c.getAutor().getNombre()) && a.getApellidos().equalsIgnoreCase(c.getAutor().getApellidos())){
+					esta=true;
+					break;
 				}
-			}while(!seguir);		
+				cc.getDatos();
+			}
+			if(!esta) {
+				cuadros.add(c);
+			}else {
+				System.out.println("El cuadro introducido ya se encuentra enla base");
+			}
+			
+			
+			opt=gcontinuarSN();	
 			
 			
 		}while(opt);

@@ -1,8 +1,9 @@
 package com.ipartek.gonza.objetos.pojos.ejercicios;
 
 public class Cuadro {
+	
 	private String titulo;
-	private String autor;
+	private Autor autor;
 	private int altura;
 	private int  anchura;
 	private int  ano;
@@ -10,14 +11,16 @@ public class Cuadro {
 	private Double precio;
 	
 	
-	public Cuadro(String titulo, String autor, int altura, int anchura, int ano, boolean restaurado, Double precio) {
+	public Cuadro(String titulo, String autorNombre,String autorApe, int altura, int anchura, int ano, boolean restaurado, Double precio) {
 		setTitulo(titulo);
-		setAutor(autor);
+		this.autor= new Autor(autorNombre,autorApe);
 		setAltura(altura);
 		setAnchura(anchura);
 		setAno(ano);
 		setRestaurado(restaurado);
 		setPrecio(precio);
+		
+		
 	}
 	public Cuadro() {
 		
@@ -30,12 +33,7 @@ public class Cuadro {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getAutor() {
-		return autor;
-	}
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
+
 	public int getAltura() {
 		return altura;
 	}
@@ -67,8 +65,15 @@ public class Cuadro {
 		this.precio = precio;
 	}
 	
+	
+	public Autor getAutor() {
+		return autor;
+	}
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 	public void getDatos() {
-		System.out.println("\nAutor: "+getAutor()+
+		System.out.println("\nAutor: "+getAutor().getNombre()+" "+getAutor().getApellidos()+
 				"\nTitulo: "+getTitulo()+
 				"\nAltura: "+getAltura()+
 				"\nAnchura: "+getAnchura()+
