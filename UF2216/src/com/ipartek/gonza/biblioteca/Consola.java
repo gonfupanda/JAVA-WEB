@@ -94,21 +94,21 @@ public static Object gObject(String mensaje,Object o) {
 			try {
 				String texto = gString(mensaje);
 				if(o instanceof LocalDate) {
-					o=LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
+					o=gDate(mensaje);
 					error="Error en la Date";
 				}else if(o instanceof Integer) {
 					error="Error en el Integer";
-					o=Integer.parseInt(texto);
+					o=gInt(mensaje);
 				}else if(o instanceof Long) {
 					error="Error en el Long ";
-					o=Long.parseLong(texto);
+					o=gLong(mensaje);
 				}else if (o instanceof Double) {
 					error="Error en El Double";
-					o=Double.parseDouble(texto);
+					o=gDouble(mensaje);
 	
 				}else if(o instanceof BigDecimal) {
 					error="Error en el big decimal";
-					o=new BigDecimal(texto);
+					o=gBigDecimal(mensaje);
 				}	
 				
 				ookey=true;
