@@ -23,31 +23,25 @@ public class Consola {
 	}
 	
 	public static int gInt(String mensaje) {
-		int i=0;
-		try {
-			String texto = gString(mensaje);
-			i=Integer.parseInt(texto);
-			
-		}catch(Exception e) {
-			System.out.println("Introduzca un numero valido");
-			gInt(mensaje);
-			
-		}
-		return i;
 		
+		return (int) gObject(mensaje, new Convertible() {
+
+			@Override
+			public Object convertir(String texto) {
+				return Integer.parseInt(texto);
+			}
+			
+		});	
 	}
-	public static long gLong(String mensaje) {
-		long i=0;
-		try {
-			String texto = gString(mensaje);
-			i=Long.parseLong(texto);
+	public static Long gLong(String mensaje) {
+		return (Long) gObject(mensaje, new Convertible() {
+
+			@Override
+			public Object convertir(String texto) {
+				return Long.parseLong(texto);
+			}
 			
-		}catch(Exception e) {
-			System.out.println("Introduzca un numero valido");
-			gInt(mensaje);
-			
-		}
-		return i;
+		});
 		
 	}
 	public static float gFloat(String mensaje) {
@@ -65,48 +59,69 @@ public class Consola {
 		
 	}
 	public static Double gDouble(String mensaje) {
-		Double i=0D;
-		try {
-			String texto = gString(mensaje);
-			i=Double.parseDouble(texto);
+		return (Double) gObject(mensaje, new Convertible() {
+
+			@Override
+			public Object convertir(String texto) {
+				return Double.parseDouble(texto);
+			}
 			
-		}catch(Exception e) {
-			System.out.println("Introduzca un numero valido");
-			gInt(mensaje);
-			
-		}
-		return i;
+		});
 		
 	}
 	public static BigDecimal gBigDecimal(String mensaje) {
-		BigDecimal i=null;
-		try {
-			String texto = gString(mensaje);
-			i=new BigDecimal(texto);
+		return (BigDecimal) gObject(mensaje, new Convertible() {
+
+			@Override
+			public Object convertir(String texto) {
+				return new BigDecimal(texto);
+			}
 			
-		}catch(Exception e) {
-			System.out.println("Introduzca un numero valido");
-			gInt(mensaje);
-			
-		}
-		return i;
+		});
 		
-	}
-	
+	}	
 	public static LocalDate gDate(String mensaje) {
 		
-		LocalDate i=null;
-		try {
-			String texto = gString(mensaje+"(AAAA-MM.DD)");
-			i=LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
-			
-		}catch(Exception e) {
-			System.out.println("Introduzca un numero valido");
-			System.out.println(e.getCause());
-			gInt(mensaje);
-			
-		}
-		return i;
+		return LocalDate.parse(mensaje, DateTimeFormatter.ISO_DATE);
+	}
+	
+public static Object gObject(String mensaje,Object o) {
+		String error=null;
+		boolean ookey;
+				
+		do {			
+		ookey=false;
+			try {
+				String texto = gString(mensaje);
+				if(o instanceof LocalDate) {
+					o=LocalDate.parse(texto, DateTimeFormatter.ISO_DATE);
+					error="Error en la Date";
+				}else if(o instanceof Integer) {
+					error="Error en el Integer";
+					o=Integer.parseInt(texto);
+				}else if(o instanceof Long) {
+					error="Error en el Long ";
+					o=Long.parseLong(texto);
+				}else if (o instanceof Double) {
+					error="Error en El Double";
+					o=Double.parseDouble(texto);
+	
+				}else if(o instanceof BigDecimal) {
+					error="Error en el big decimal";
+					o=new BigDecimal(texto);
+				}	
+				
+				ookey=true;
+				//throw new IllegalArgumentException("El tipo "+o.getClass()+" no es corrrecto");
+				
+			}catch(Exception e) {
+				System.out.println("Introduzca un valor valido");
+				System.out.println(e.getCause());
+				
+			}
+		}while(!ookey);
+		
+		return o;
 	}
 	
 	public static boolean gBoolean(String mensaje) {
@@ -166,5 +181,8 @@ public class Consola {
 		}while(!seguir);
 		return opt;
 	}
-
+	
+	interface Convertible{
+		Object convertir(String texto);
+	}
 }
