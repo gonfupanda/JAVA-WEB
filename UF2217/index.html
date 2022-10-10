@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+      <!--Boodstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
+        crossorigin="anonymous">
+        <!--Boodstrap-->
+        <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de ejemplo</title>
+
+    <style>
+
+        li{
+            display: inline;
+            background-color: olive;
+            margin-left: 10 px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+
+        }
+        .galeria {
+            height: calc( var(--h) + 3em);
+            width: var(--w);
+            margin:1em auto;
+            border: 1px solid #555;
+            position: relative;  
+            }
+
+        .galeria img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 3s;
+            }
+
+        .galeria input[type=radio] {
+            position: relative;
+            bottom: calc(-1 * var(--h) - 1.5em);
+            left: .5em;
+            }
+
+        .galeria input[type=radio]:nth-of-type(1):checked ~ img:nth-of-type(1) {
+            opacity: 1;
+            }
+
+        .galeria input[type=radio]:nth-of-type(2):checked ~ img:nth-of-type(2) {
+            opacity: 1;
+            }
+
+        .galeria input[type=radio]:nth-of-type(3):checked ~ img:nth-of-type(3) {
+            opacity: 1;
+            }
+
+        .galeria input[type=radio]:nth-of-type(4):checked ~ img:nth-of-type(4) {
+            opacity: 1;
+            }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <ul>
+            <li><a href="#">Enlace externo 1</a></li>
+            <li><a href="#">Enlace externo 2</a></li>
+            <li><a href="#">Enlace externo 3</a></li>
+
+        </ul>
+    </aside>
+
+   
+    <main>
+        <!-- section#html>h2>{HTML} -->
+        <section id="html">
+           
+
+            <article id="parrafos">
+                <h3>Párrafos</h3>
+
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere laborum voluptates iste harum
+                    voluptatem ab, nesciunt quibusdam dicta ex odio animi ad inventore temporibus aperiam, nulla quas
+                    tempore enim laudantium.</p>
+                <p>Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit illo, quia quae, quas soluta
+                    accusantium laborum, ea dolores reprehenderit atque quis minus! Earum quas sed quia modi ea
+                    aspernatur iste?
+                    Qui vero nesciunt optio atque vitae, libero rem nulla consectetur dolor voluptatem excepturi
+                    explicabo dicta iste nam sunt in quisquam dolorum ratione vel suscipit quos est! Quia eaque
+                    recusandae aperiam?
+                    Voluptates laborum ducimus consequuntur. Officia a impedit nam expedita error laudantium, debitis
+                    dignissimos deserunt eveniet numquam porro libero possimus facere tempore aliquam veniam ipsam nisi,
+                    iure fuga iusto eaque fugiat!
+                    Temporibus ducimus ut quisquam quis assumenda hic provident quaerat adipisci ullam minima illum,
+                    dolor tenetur maiores iste! Quia, aliquam aperiam! Tempore odit vitae iure magnam repudiandae error
+                    cupiditate. Sint, illo.
+                    Modi, quod accusamus iusto assumenda illo repudiandae quia nisi deserunt laboriosam? Minima adipisci
+                    vitae laborum ea quos accusamus debitis eveniet eligendi, ullam cupiditate illo repellendus, iure,
+                    expedita beatae quas? Facere.</p>
+            </article>
+            <article id="inline">
+                <h3>Inline</h3>
+                
+                <div class="galeria" style="--w: 260px; --h: 300px;">
+                <input type="radio" name="navegacion" id="_1" checked>
+                <input type="radio" name="navegacion" id="_2">
+                <input type="radio" name="navegacion" id="_3">
+                <input type="radio" name="navegacion" id="_4"> 
+                <img src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" width="260" height="300" alt="Galeria CSS 1" />
+                <img src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" width="260" height="300" alt="Galeria CSS 2"  />
+                <img src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" width="260" height="300" alt="Galeria CSS 3" />
+                <img src="https://via.placeholder.com/468x200/EEEEEE/000000?text=Foto%20de%20producto" width="260" height="300" alt="Galeria CSS 4" />
+                </div>
+            </article>
+           
+        </section>
+    </main>
+    
+    <footer>
+        &copy;2022 Gonzalo Padierna
+    </footer>
+</body>
+
+</html>
