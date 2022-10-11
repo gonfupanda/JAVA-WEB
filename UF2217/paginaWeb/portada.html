@@ -33,37 +33,42 @@
                 background-color: #816f07;
                 height: 10%;
                 width: 100%;
+               
+            }
+            #navegacion a{
+                color: white;
+            }
+            #menu{
+                margin-left: 30%;
+                margin-right: 20%;
+            }
+
+            #navegacion li:hover{
+                background-color: #d4b609;
             }
             #blog_buttom{
-                align-content: right;
-                margin-right: 5%;
                 color:#665007
             }
             #content{
-                height: 50%;
                 width: 100%;
                 padding-right: 0; 
+                display: flex;
             }
             #content-texto{
                 align-content: center;
+                width: 20%;
+                margin: 3%;
+                margin-left: 5%;
             }   
             #content-gallery{
                 padding: 0;
+                position: relative;
 
             }
-            #content-texto p{
-                margin-top: 2px;
-                padding-top: 2px;;
+            #content-texto p{  
+                font-size: 14px;
             }
-            .column {
-                float: left;
-                width: 50%; 
-            }
-            #footer{
-                width: 100%;
-                padding: 0; 
-                
-            }
+            
             #barraImagenes{
                 background-color: #816f07;
                 height: 5%;
@@ -71,12 +76,41 @@
                 padding: 0;
                 
             }
+            #barraImagenes a{
+                color: white;
+            }
+            #barraImagenes a:hover{
+                color: black;
+            }
             #imagenes img {
-                height: 90%;
-                width: 100%; 
+                height: 416px;
+                width: 1000px; 
+                margin-right: 21px;
                
                 
             }
+            .text-block {
+                position: absolute;
+                height: 95px;
+                width: 462px;
+                bottom: 220px;
+                right: 140px;
+                opacity: 65%;
+                background-color: #F6F5D5;
+                color: black;
+                font-size: 18px;
+
+            }
+            #footer{
+                width: 100%;
+                padding: 0; 
+                
+            }
+        #navegacionFooter a {
+                color: black;;
+            }
+
+
         </style>
     </head>
     <body>
@@ -86,7 +120,7 @@
         </div>
         
         <nav class="navbar navbar-expand-lg " id="navegacion">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav  mb-2 mb-lg-0" id="menu">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">SOMOS ORBELA</a>
                 </li>
@@ -107,19 +141,33 @@
 
         </nav>
 
-        <div class="container-xxxl row" id="content">
+        <div  id="content">
             <div id="content-texto" class="column">
-                <h1>Portada</h1>
-                <p>Imagen</p>
-                <p>Cuadro sobre imagen</p>
-                <p>Tamaño:XXXXX</p>
-                <p>Color:XXXXXX</p>
-                <p>texto:XXXXXX</p>
+                <h5>Portada</h5>
+                <p>Imagen<br>
+                Cuadro sobre imagen</p>
+                <p>Tamaño:462 X 95px<br>
+                Color:XXXXXX<br>
+                texto:XXXXXX</p>
+
+                <p>Barra inferior de la imagen<br>
+                1000px x 25px #9EA123<br>
+                nºs barra inferior: 18px E4E682#<br>
+                nºs seleccionado: #35360E<br>
+                margen izquierdo: 21px</p>
+                <p>Texto bienvenida:21 px</p>
+
+
+
+
 
             </div>
             <div id="content-gallery" class="column">
                 <div id="imagenes">
                     <img src="images/hojarasca.jpg">
+                    <div class="text-block">
+                        <p>kbakbvñkbafvbakndvñjksbdvbkvbjs<br>blvhbfvbhvbksbvjhvksbvfbkbvsbv</p>
+                      </div>
 
                 </div>
                 <nav id="barraImagenes" class="navbar navbar-expand-lg ">
@@ -159,7 +207,29 @@
         </div>
         <div class="container-xxl" id="footer">
             <div style="background-color:#665007 ; height:5%;"></div>
-            <div style="background-color:#816f07 ;height: 100%;"></div>
+            <div style="background-color:#816f07 ;height: 100%;" id="footer-content">
+                <div>
+                    <nav class="navbar navbar-expand-lg " id="navegacionFooter">
+                        <ul class="navbar-nav  mb-2 mb-lg-0" id="menufooter">
+                            <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="#">SOMOS ORBELA</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">NUESTROS PROYECTOS</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="#">ESTAMOS AQUI</a>
+                            </li>
+                            
+                          </ul>
+                    </nav>
+                    <p>Mapa web |   Aviso legal  | Politica de privacidad</p>
+                </div>
+                <div></div>
+                <div></div>
+                
+            
+            </div>
         </div>
 
         
