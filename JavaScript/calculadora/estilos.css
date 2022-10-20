@@ -1,0 +1,16 @@
+body div{
+    margin-top: 15%;
+    border-radius: 2%;
+    border: 2px solid black;
+    background-image: url(cuaderno.webp);
+    
+}
+
+body{
+    background-image: url("fondo.jpg");
+
+}
+
+h1{
+    color: black;
+}
