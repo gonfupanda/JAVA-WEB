@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    
+    <link rel="icon" href="imgs/favicon.ico">
+
+    <style>
+        .card-title {
+            height: 3rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+                <a href="index.html"><img class="manImg" src="imgs/favicon.ico" ></img></a>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Principal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nuevoProd.html">Registrar Producto</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Productos</h1>
+    <main class="mb-xl-3">
+
+        <table class="table table-hover table-bordered table-striped" id="tabla">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- tr*5>(th>{$}^td>{Nombre$}^td>{$$$.$$€}^td>{imagen$.jpg}^td>a.btn.btn-sm.btn-primary[href=nuevoProd.html]>{Editar}^{ }a.btn.btn-sm.btn-danger[href=#]>{Borrar}) -->
+                <tr>
+                    <th>1</th>
+                    <td>Nombre1</td>
+                    <td>001.01€</td>
+                    <td><a href="nuevoProd.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Nombre2</td>
+                    <td>002.02€</td>
+                    <td><a href="nuevoProd.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Nombre3</td>
+                    <td>003.03€</td>
+                    <td><a href="nuevoProd.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td>Nombre4</td>
+                    <td>004.04€</td>
+                    <td><a href="nuevoProd.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <td>Nombre5</td>
+                    <td>005.05€</td>
+                    <td><a href="nuevoProd.html" class="btn btn-sm btn-primary">Editar</a> <a href="#" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+            </tbody>
+            <tfoot class="table-dark">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="nuevoProd.html">Añadir</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+    
+  
+   
+    
+    <footer class="p-3 bg-dark text-light d-flex">
+        <div>&copy; 24/10/2022</div>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="list-group-item"> <a class="nav-link" href="#">Politica de Privacidad</a></li>
+                <li class="list-group-item"> <a class="nav-link" href="#">Contacto</a></li>
+                <li class="list-group-item"><a class="nav-link" href="#">Localizacion</a></li>
+            </ul>
+        </nav>
+        <div class="ms-auto">
+            <a class="nav-link active" aria-current="page" href="login.html">Login</a>
+            <i class="bi bi-twitter"></i>
+            <i class="bi bi-facebook"></i>
+        </div>
+    </footer>
+</body>
+<script>
+
+    let table = new DataTable('#tabla', {
+    // options
+});
+</script>
+
+
+</html>

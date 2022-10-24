@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="icon" href="imgs/favicon.ico">
+
+    <style>
+        .card-title {
+            height: 3rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+                <a href="index.html"><img class="manImg" src="imgs/favicon.ico" ></img></a>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Principal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="listado.html">Productos  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Registrar Producto</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container mb-xl-3">
+        <form action="index.html" class="needs-validation" novalidate>
+            <h1 style="margin-top:2% ;">Nuevo Producto</h1>
+           
+            <div class="row mb-3">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input  min-length="2" max-length="20" type="text" class="form-control" id="nombre" required>
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio y debe tener desde 2 a 20 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                <div class="col-sm-10">
+                    <input type="number" step=".01" min="0" class="form-control" id="precio" required>
+                    <div class="invalid-feedback">
+                        El precio debe estar rellenado y ser positivo
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="imagen">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </form>
+
+        
+    </main>
+   
+   
+    </div>
+    <footer class="p-3 bg-dark text-light d-flex" >
+        <div>&copy; 24/10/2022</div>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="list-group-item"> <a class="nav-link" href="#">Politica de Privacidad</a></li>
+                <li class="list-group-item"> <a class="nav-link" href="#">Contacto</a></li>
+                <li class="list-group-item"><a class="nav-link" href="#">Localizacion</a></li>
+            </ul>
+        </nav>
+        <div class="ms-auto">
+            <a class="nav-link active" aria-current="page" href="login.html">Login</a>
+            <i class="bi bi-twitter"></i>
+            <i class="bi bi-facebook"></i>
+        </div>
+    </footer>
+</body>
+
+</html>
