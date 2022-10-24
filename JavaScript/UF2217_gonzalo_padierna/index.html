@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="icon" href="imgs/favicon.ico">
 
     <style>
@@ -17,32 +18,38 @@
         #bottonTop{
             float: right;
             display: none;
+        }
+        @media (min-width: 576px){
+            #bottonTop{
+                display: block;
             }
+        }
+       
+
     </style>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
-        <div class="container-fluid">
-            <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
-                <a href="#"><img class="manImg" src="imgs/favicon.ico" ></img></a>
-            </span>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Principal</a>
+<!--<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">-->
+    <nav class="bg-dark ">
+        <div class=>
+           
+            <div class="menuHeader" id="navbarSupportedContent">
+                <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+                    <a href="index.html"><img class="manImg" src="imgs/favicon.ico" ></img></a>
+                </span>
+                <!--class="navbar-nav me-auto mb-2 mb-lg-0"-->
+                <ul class="">
+                    <li class="">
+                        <a class="" href="#">Principal</a>
+                    </li>
+                    <li class=" ">
+                        <a class="" href="listado.html">Productos  </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listado.html">Productos  </a>
+                        <a class="" href="nuevoProd.html">Registrar Producto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="nuevoProd.html">Registrar Producto</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Login</a>
                     </li>
@@ -229,7 +236,7 @@
             <button type="button"  class="btn btn-secondary" onclick="window.location.href='#';">TOP</button>
         </div>
     </div>
-    <footer class="p-3 bg-dark navbar-dark text-light d-flex">
+    <footer class="p-3 bg-dark navbar-dark text-light d-flex ">
         <div>&copy; 24/10/2022</div>
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
