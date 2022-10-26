@@ -1,4 +1,4 @@
-package java.com.ipartek.formacion.gonzaPrueba;
+package com.ipartek.formacion.gonzaPrueba;
 
 import java.io.IOException;
 
