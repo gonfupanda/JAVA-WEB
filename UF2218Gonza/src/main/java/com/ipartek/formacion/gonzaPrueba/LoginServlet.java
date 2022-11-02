@@ -15,20 +15,27 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    //Entra por aqui en enlaces,Urls,...
+        request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");//En caso de recoger un caracter especial
+	    //Solo entra por aqui por formularios
+	    request.setCharacterEncoding("UTF-8");
         
-        String user = request.getParameter("user");//RECOGE POR EL NAME DEL HTML/JSP
-        String pass = request.getParameter("pass");//RECOGE POR EL NAME DEL HTML/JSP
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
         
         if(validarUsuario(user, pass)) {
-            request.getSession().setAttribute("usuario", user);//Introducir a SESION
-            response.sendRedirect("principal.jsp");
+            request.getSession().setAttribute("usuario", user);
+            response.sendRedirect("principal");
         } else {
             //response.sendRedirect("login.jsp");
             request.setAttribute("error", "El usuario o la contraseña son incorrectos");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
         }
     }
 
