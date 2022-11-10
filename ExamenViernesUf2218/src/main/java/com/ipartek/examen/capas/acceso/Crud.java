@@ -21,6 +21,7 @@ public class Crud implements Dao{
 	private static final String sqlId = "SELECT * FROM libros WHERE id = ?";
 	private static final String sqlInsert = "INSERT INTO libros (id, nombre,precio,descuento) VALUES (?, ?,?,?)";
 	private static final String sqlDelete = "DELETE FROM libros WHERE id=?";
+	private static final String sqlUpdate = "UPDATE libros SET nombre=?,precio=?,descuento=? WHERE id=?";
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
 	
 	private static final Crud INSTANCIA = new Crud();
@@ -43,7 +44,7 @@ public class Crud implements Dao{
 	}
 	
 	
-	private static ArrayList<Libro> selectAll() {
+	private static ArrayList<Libro> selectAll() {//GET ALL the BOOKS FRON DE DATABASE
 		ArrayList<Libro> l = new ArrayList() ;
 		try {
 			Class.forName(driver);
@@ -65,6 +66,98 @@ public class Crud implements Dao{
 		}
 		return l;
 	}
+	
+	public static Libro getById(Long id) {//GET BOOK FRON DE DATABASE BY Id
+		Libro l = null;
+		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
+			PreparedStatement pst = con.prepareStatement(sqlId);
+			
+			Class.forName(driver);
+	
+			pst.setLong(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			l = new Libro(rs.getString("id"),rs.getString("nombre"),rs.getString("precio"),rs.getString("descuento"));	
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return l;
+	}
+	
+	public static Libro InsertLibro(Libro lib) {//INSERT BOOK 
+
+		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
+			PreparedStatement pst = con.prepareStatement(sqlInsert);
+			
+			Class.forName(driver);
+	
+			pst.setLong(1, lib.getId());
+			pst.setString(2, lib.getNombre());
+			pst.setString(3, lib.getPrecio());
+			pst.setInt(4, lib.getDescuento());
+			
+			ResultSet rs = pst.executeQuery();
+				
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return lib;
+	}
+	
+	public static void deleteLibro(Long id) {//DELETE BOOK 
+
+		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
+			PreparedStatement pst = con.prepareStatement(sqlDelete);
+			
+			Class.forName(driver);
+	
+			pst.setLong(1, id);
+			
+			int rs = pst.executeUpdate();			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Object modifyLibro(Libro lib) {//MODIFY BOOK 
+
+		try {
+			Connection con = DriverManager.getConnection(url, user, passwd);
+			PreparedStatement pst = con.prepareStatement(sqlUpdate);
+			
+			Class.forName(driver);
+
+			pst.setString(1, lib.getNombre());
+			pst.setString(2, lib.getPrecio());
+			pst.setInt(3, lib.getDescuento());
+			pst.setLong(4, lib.getId());
+			
+			int rs = pst.executeUpdate();
+				
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return lib;
+	}
 
 	@Override
 	public Iterable obtenerTodos() {
@@ -73,26 +166,24 @@ public class Crud implements Dao{
 	}
 
 	@Override
-	public Object obtenerPorId(Long id) throws SQLException {
+	public Object obtenerPorId(Long id) {
 
-		return null;
+		return getById(id);
 	}
 
 	@Override
 	public Object insertar(Object objeto) {
-		// TODO Auto-generated method stub
-		return null;
+		return InsertLibro((Libro) objeto);
 	}
 
 	@Override
 	public Object modificar(Object objeto) {
-		// TODO Auto-generated method stub
-		return null;
+		return modifyLibro((Libro) objeto);
 	}
 
 	@Override
 	public void borrar(Long id) {
-		// TODO Auto-generated method stub
+		deleteLibro(id);
 		
 	}
 

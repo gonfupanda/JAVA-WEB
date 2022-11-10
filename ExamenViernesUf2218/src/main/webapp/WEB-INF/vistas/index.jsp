@@ -18,6 +18,11 @@
 				<td><fmt:formatNumber type="currency" value="${p.precio}"></fmt:formatNumber>
 				</td>
 				<td>${p.descuento}%</td>
+				<td>
+					<a class="btn btn-sm btn-primary" href="admin/libro?id=${p.id}">Editar</a>
+					<a class="btn btn-sm btn-danger" href="admin/libro/borrar?id=${p.id}">Borrar</a>
+				</td>
+			</tr>
 			</tr>
 		</c:forEach>
 	</tbody>

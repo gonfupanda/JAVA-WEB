@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static com.ipartek.examen.ladoServ.Globales.dao;
+import static com.ipartek.examen.ladoServ.Globales.daoCrud;
+
 import com.ipartek.examen.capas.entidades.Libro;
 
 @WebServlet("/admin/libro")
@@ -24,7 +25,7 @@ public class LibroServlet extends HttpServlet {
 		if (id != null) {
 			Libro libro;
 			try {
-				libro = dao.obtenerPorId(Long.parseLong(id));
+				libro = daoCrud.obtenerPorId(Long.parseLong(id));
 				request.setAttribute("producto", libro);
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
@@ -36,7 +37,7 @@ public class LibroServlet extends HttpServlet {
 
 			
 		}
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/libro.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/libro.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class LibroServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Iterable<Libro> libros = dao.obtenerTodos();
+		Iterable<Libro> libros = daoCrud.obtenerTodos();
 
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
@@ -61,21 +62,18 @@ public class LibroServlet extends HttpServlet {
 				this.repe = true;
 			}
 		});
-		if (this.repe) {
+if (libro.getErrores().size() > 0 ) {
+			
 			request.setAttribute("alertaNivel", "danger");
-			request.setAttribute("alertaMensaje", "Ese ID ya esta registrado");
+			request.setAttribute("alertaMensaje", "Hay errores en el formulario");
 			request.setAttribute("producto", libro);
 			request.getRequestDispatcher("/WEB-INF/vistas/libro.jsp").forward(request, response);
-		} else {
-			if (libro.getErrores().size() > 0) {
-				request.setAttribute("alertaNivel", "danger");
-				request.setAttribute("alertaMensaje", "Hay errores en el formulario");
-				request.setAttribute("producto", libro);
-				request.getRequestDispatcher("/WEB-INF/vistas/admin/libro.jsp").forward(request, response);
-			} else {
-				dao.insertar(libro);
-				response.sendRedirect(request.getContextPath() + "/index");
-			}
+		} else if(!this.repe){
+			daoCrud.insertar(libro);
+			response.sendRedirect(request.getContextPath() + "/index");
+		}else {
+			daoCrud.modificar(libro);
+			response.sendRedirect(request.getContextPath() + "/index");
 		}
 	}
 
