@@ -26,7 +26,7 @@ public class LibroServlet extends HttpServlet {
 			Libro libro;
 			try {
 				libro = daoCrud.obtenerPorId(Long.parseLong(id));
-				request.setAttribute("producto", libro);
+				request.setAttribute("libro", libro);
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

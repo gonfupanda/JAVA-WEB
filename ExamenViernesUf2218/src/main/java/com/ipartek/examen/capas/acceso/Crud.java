@@ -26,18 +26,7 @@ public class Crud implements Dao{
 	
 	private static final Crud INSTANCIA = new Crud();
 	
-	/*public static void main(String[] args) {
-		ArrayList<Libro> libross = selectAll();
-		for(int i=0;i<libross.size();i++) {
-			System.out.println(libross.get(i));
-		}
-	}*/
-	public static void main(String[] args) {
-		ArrayList<Libro> libross = selectAll();
-		for(int i=0;i<libross.size();i++) {
-			System.out.println(libross.get(i));
-		}
-	}
+
 
 	public static Crud getInstancia() {
 		return INSTANCIA;
@@ -54,7 +43,6 @@ public class Crud implements Dao{
 					ResultSet rs = pst.executeQuery()) {
 					
 				while (rs.next()) {
-					System.out.printf("%s: %s, %s\n", rs.getLong("id"), rs.getString("nombre"), rs.getString("precio"));
 					Libro li = new Libro(rs.getString("id"),rs.getString("nombre"),rs.getString("precio"),rs.getString("descuento"));
 					l.add(li);
 				}		
@@ -77,9 +65,10 @@ public class Crud implements Dao{
 	
 			pst.setLong(1, id);
 			ResultSet rs = pst.executeQuery();
-			
-			l = new Libro(rs.getString("id"),rs.getString("nombre"),rs.getString("precio"),rs.getString("descuento"));	
-			
+			if(rs.next()) {
+				l = new Libro(rs.getString("id"),rs.getString("nombre"),rs.getString("precio"),rs.getString("descuento"));	
+			}
+	
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -102,7 +91,7 @@ public class Crud implements Dao{
 			pst.setString(3, lib.getPrecio());
 			pst.setInt(4, lib.getDescuento());
 			
-			ResultSet rs = pst.executeQuery();
+			pst.executeUpdate();
 				
 			
 		} catch (SQLException e1) {
@@ -134,7 +123,7 @@ public class Crud implements Dao{
 		}
 	}
 	
-	public static Object modifyLibro(Libro lib) {//MODIFY BOOK 
+	public static Object modifyLibro(Libro lib)  {//MODIFY BOOK 
 
 		try {
 			Connection con = DriverManager.getConnection(url, user, passwd);
@@ -147,8 +136,8 @@ public class Crud implements Dao{
 			pst.setInt(3, lib.getDescuento());
 			pst.setLong(4, lib.getId());
 			
-			int rs = pst.executeUpdate();
-				
+			int numRegMod = pst.executeUpdate();
+			
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
