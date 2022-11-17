@@ -11,9 +11,6 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Usuario;
 
 public class DaoMySqlUsuarios implements Dao<Usuario> {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/mf0966ejemplo";
-	private static final String USER = "root";
-	private static final String PASSWORD = "abcd*1234";
 
 	private static final String SQL_SELECT = "SELECT id, email, password FROM usuarios";
 	
@@ -36,13 +33,6 @@ public class DaoMySqlUsuarios implements Dao<Usuario> {
 		}
 	}
 	
-	private Connection getConexion() {
-		try {
-			return DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Ha habido un error al cargar el driver", e);
-		}
-	}
 	
 	@Override
 	public Iterable<Usuario> obtenerTodos() {

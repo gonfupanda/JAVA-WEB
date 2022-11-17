@@ -10,13 +10,12 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Categoria;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 public class DaoMySqlProducto implements Dao<Producto> {
-	private static final String URL = "jdbc:mysql://localhost:3306/mf0966ejemplo";
-	private static final String USER = "root";
-	private static final String PASSWORD = "abcd*1234";
 
 	private static final String SQL_SELECT_ID = "SELECT p.id, p.nombre, p.precio, p.descripcion, c.id, c.nombre, c.descripcion FROM productos p, categorias c WHERE p.categorias_id = c.id AND p.id = ?";
-	
+	private static final String sqlInsert = "INSERT INTO productos (id, nombre,precio,descripcion,categorias_id) VALUES ( null,?,?,?,?)";
 	// SINGLETON
+	
+	
 	private DaoMySqlProducto() {
 	}
 
@@ -26,22 +25,6 @@ public class DaoMySqlProducto implements Dao<Producto> {
 		return INSTANCIA;
 	}
 	// FIN SINGLETON
-
-	static {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			throw new AccesoDatosException("No se ha podido encontrar el driver");
-		}
-	}
-
-	private Connection getConexion() {
-		try {
-			return DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Ha habido un error al cargar el driver", e);
-		}
-	}
 
 	@Override
 	public Producto obtenerPorId(Long id) {
@@ -62,6 +45,23 @@ public class DaoMySqlProducto implements Dao<Producto> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido obtener el producto", e);
 		}
+	}
+	public Producto insertar(Producto objeto) {
+		try (Connection con = getConexion();
+				PreparedStatement pst = con.prepareStatement(sqlInsert)) {
+			
+			pst.setString(1, objeto.getNombre());
+			pst.setDouble(2, objeto.getPrecio().doubleValue());
+			pst.setString(3, objeto.getDescripcion());
+			pst.setLong(4, objeto.getCategoria().getId());
+			
+			pst.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+		}
+		return objeto;
 	}
 	
 	

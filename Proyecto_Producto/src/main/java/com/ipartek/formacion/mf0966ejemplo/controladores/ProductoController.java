@@ -1,7 +1,9 @@
 package com.ipartek.formacion.mf0966ejemplo.controladores;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
+import com.ipartek.formacion.mf0966ejemplo.modelos.Categoria;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 import jakarta.servlet.ServletException;
@@ -15,17 +17,43 @@ public class ProductoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/plain");
-		
-		String id = request.getParameter("id");
-		
-		Producto producto = Globales.DAO_PRODUCTO.obtenerPorId(Long.parseLong(id));
-		
-		response.getWriter().println(producto);
+
+			String id = request.getParameter("id");
+
+			if ( id != null && id!="" ) {
+				Producto producto = Globales.DAO_PRODUCTO.obtenerPorId(Long.parseLong(id));
+				request.setAttribute("producto", producto);
+			}
+
+			Iterable<Categoria> categorias = Globales.DAO_CATEGORIA.obtenerTodos();
+
+			request.setAttribute("categorias", categorias);
+			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String id = request.getParameter("id");
+		
+		if ( id == null || id=="" ) {
+			String nombre = request.getParameter("nombre");
+			String precio = request.getParameter("precio");
+			String categoria = request.getParameter("categoria");
+			String descripcion = request.getParameter("descripcion");
+			Categoria c=Globales.DAO_CATEGORIA.obtenerPorId(Long.parseLong(categoria));
+			
+			Producto p=new Producto(null,nombre,new BigDecimal(precio),descripcion,c);
+			Globales.DAO_PRODUCTO.insertar(p);
+	
+		}else {
+			Producto producto = Globales.DAO_PRODUCTO.obtenerPorId(Long.parseLong(id));
+			request.setAttribute("producto", producto);
+	
+		}
+		
+		Iterable<Categoria> categorias = Globales.DAO_CATEGORIA.obtenerTodos();
+
+		request.setAttribute("categorias", categorias);
+		request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
 
 }

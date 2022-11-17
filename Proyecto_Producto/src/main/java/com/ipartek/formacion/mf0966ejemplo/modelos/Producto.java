@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Producto {
+
+
 	private Long id;
 	private String nombre;
 	private BigDecimal precio;
