@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<form action = "producto" method="post">
+<form action = "admin/producto" method="post">
 	<div class="row mb-3">
 		<label for="id" class="col-sm-2 col-form-label">id</label>
 		<div class="col-sm-10">
@@ -39,7 +39,7 @@
 	<div class="row mb-3">
 		<label for="descripcion" class="col-sm-2 col-form-label">descripcion</label>
 		<div class="col-sm-10">
-			<textarea class="form-control" id="descripcion" name="descripcion" value="${producto.descripcion}"></textarea>
+			<textarea class="form-control" id="descripcion" name="descripcion">${producto.descripcion}</textarea>
 		</div>
 	</div>
 

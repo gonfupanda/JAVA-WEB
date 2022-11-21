@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="https://jakarta.ee/xml/ns/jakartaee"
-	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-	version="5.0">
-	<welcome-file-list>
-		<welcome-file>index</welcome-file>
-	</welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="5.0">
+  <welcome-file-list>
+    <welcome-file>index</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ProductoListadoController</display-name>
+    <servlet-name>ProductoListadoController</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.ProductoListadoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductoListadoController</servlet-name>
+    <url-pattern>/ProductoListadoController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductoBorrar</display-name>
+    <servlet-name>ProductoBorrar</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.ProductoBorrar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductoBorrar</servlet-name>
+    <url-pattern>/ProductoBorrar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FacturasListado</display-name>
+    <servlet-name>FacturasListado</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.FacturasListado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacturasListado</servlet-name>
+    <url-pattern>/FacturasListado</url-pattern>
+  </servlet-mapping>
 </web-app>
