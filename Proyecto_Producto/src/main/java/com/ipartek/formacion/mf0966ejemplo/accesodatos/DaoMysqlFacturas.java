@@ -50,16 +50,7 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 			while(rs.next()) {		
 				fact = new Factura(rs.getLong("f.id"),rs.getString("f.codigo"),rs.getDate("f.fecha").toLocalDate(),
 						Globales.DAO_CLIENTE.obtenerPorId(rs.getLong("f.clientes_id")),
-						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")),lineas);
-				
-				
-				PreparedStatement pst2 = con.prepareStatement(SQL_SELECT_LINEAS_FACTURA);
-				pst2.setLong(1, rs.getLong("f.id"));
-				ResultSet rs2 = pst2.executeQuery();
-				while(rs2.next()) {
-					lin = new Linea(obtenerPorId(rs2.getLong("fp.facturas_id")),Globales.DAO_PRODUCTO.obtenerPorId(rs2.getLong("fp.productos_id")),rs2.getInt("fp.cantidad"));
-					fact.getLineas().add(lin);
-				}
+						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")),obtenerLineas(rs.getLong("f.id")));		
 				li.add(fact);
 			}
 			
@@ -90,5 +81,25 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido obtener el producto", e);
 		}
+	}
+	
+	public Set<Linea> obtenerLineas(Long id){
+		Set<Linea>lineas = new HashSet<>();
+		try (Connection con = getConexion();
+				PreparedStatement pst = con.prepareStatement(SQL_SELECT_LINEAS_FACTURA)) {
+			Linea lin;
+
+			pst.setLong(1,id);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				lin = new Linea(obtenerPorId(rs.getLong("fp.facturas_id")),Globales.DAO_PRODUCTO.obtenerPorId(rs.getLong("fp.productos_id")),rs.getInt("fp.cantidad"));
+				lineas.add(lin);
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+		}
+		
+		return lineas;
+		
 	}
 }

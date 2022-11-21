@@ -11,11 +11,6 @@
 			<th>Cliente</th>
 			<th>Empleado</th>
 			<th>$Producto</th>
-			<th>Cantidad</th>
-			<c:forEach items="${f.lineas}" var="l">
-					<th>Producto</th>
-					<th>Cantidad</th>
-				</c:forEach>
 			<th>Opciones</th>
 		
 		</tr>
@@ -28,10 +23,13 @@
 				<td>${f.fecha}</td>		
 				<td>${f.cliente.id}</td>
 				<td>${f.empleado.id}</td>
+				<td>
+				PRODUCTO       CANTIDAD<br>
 				<c:forEach items="${f.lineas}" var="l">
-					<td>${l.producto.nombre}</td>
-					<td>${l.cantidad}</td>
-				</c:forEach>
+					${l.producto.nombre}     ${l.cantidad}<br>
+				</c:forEach> 
+				</td>
+
 				
 				<td><a class="btn btn-primary btn-sm"
 					href="admin/producto?id=${f.id}">Editar</a> <a
@@ -42,6 +40,8 @@
 	</tbody>
 	<tfoot class="table-dark">
 		<tr>
+			<td></td>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
