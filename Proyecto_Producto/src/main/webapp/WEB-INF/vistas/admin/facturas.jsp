@@ -10,7 +10,7 @@
 			<th >Fecha</th>
 			<th>Cliente</th>
 			<th>Empleado</th>
-			<th>$Producto</th>
+			<th>Producto  Cantidad</th>
 			<th>Opciones</th>
 		
 		</tr>
@@ -23,12 +23,14 @@
 				<td>${f.fecha}</td>		
 				<td>${f.cliente.id}</td>
 				<td>${f.empleado.id}</td>
+				<td><a href="admin/facturas/productos?id=${f.id}">Lista productos</a></td>
+				<%-- 
 				<td>
-				PRODUCTO       CANTIDAD<br>
 				<c:forEach items="${f.lineas}" var="l">
 					${l.producto.nombre}     ${l.cantidad}<br>
 				</c:forEach> 
 				</td>
+				--%>
 
 				
 				<td><a class="btn btn-primary btn-sm"

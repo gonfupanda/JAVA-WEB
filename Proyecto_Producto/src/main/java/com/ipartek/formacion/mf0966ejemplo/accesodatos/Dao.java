@@ -3,6 +3,9 @@ package com.ipartek.formacion.mf0966ejemplo.accesodatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Set;
+
+import com.ipartek.formacion.mf0966ejemplo.modelos.Factura.Linea;
 
 // Data Access Object
 public interface Dao<T> {
@@ -22,6 +25,9 @@ public interface Dao<T> {
 		throw new UnsupportedOperationException("No está implementada esta operación");
 	}
 	default void borrar(Long id) {
+		throw new UnsupportedOperationException("No está implementada esta operación");
+	}
+	default Set<Linea> obtenerLineas(Long id) {
 		throw new UnsupportedOperationException("No está implementada esta operación");
 	}
 	

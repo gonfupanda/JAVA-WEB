@@ -33,4 +33,14 @@
     <servlet-name>FacturasListado</servlet-name>
     <url-pattern>/FacturasListado</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FacturasProductoListado</display-name>
+    <servlet-name>FacturasProductoListado</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.FacturasProductoListado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacturasProductoListado</servlet-name>
+    <url-pattern>/FacturasProductoListado</url-pattern>
+  </servlet-mapping>
 </web-app>
