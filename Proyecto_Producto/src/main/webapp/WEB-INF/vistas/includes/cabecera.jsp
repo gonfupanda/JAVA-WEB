@@ -45,12 +45,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#">Principal</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/producto">New Producto</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/productos">Productos</a></li>
+						<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<c:if test="${sessionScope.usuario != null}">
-						<li class="nav-item"><a class="nav-link" href="admin/index">Administración</a></li>
-						<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
+						
 						<li class="navbar-text">${sessionScope.usuario}</li>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 					</c:if>

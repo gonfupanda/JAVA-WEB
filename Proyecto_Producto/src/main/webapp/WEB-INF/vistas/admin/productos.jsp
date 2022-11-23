@@ -5,6 +5,7 @@
 <table class="table table-striped table-hover table-bordered">
 	<thead class="table-dark">
 		<tr>
+		<th></th>
 			<th class="text-end">Id</th>
 			<th>Nombre</th>
 			<th class="text-end">Precio</th>
@@ -17,6 +18,7 @@
 	<tbody>
 		<c:forEach items="${productos}" var="p">
 			<tr>
+				<td><img src="imgs/${p.id}.jpg" alt="${p.nombre}" style="height:80px; overflow:hidden;content-align:center "></td>
 				<th class="text-end">${p.id}</th>
 				<td>${p.nombre}</td>		
 				<td class="text-end"><fmt:formatNumber type="currency" value="${p.precio}"/></td>
@@ -32,6 +34,7 @@
 	</tbody>
 	<tfoot class="table-dark">
 		<tr>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>

@@ -17,6 +17,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 	private static final String sqlUpdate_producto = "UPDATE productos SET nombre=?,precio=?,descripcion=?,categorias_id=? WHERE id=?";
 	private static final String SQL_SELECT_ALL = "SELECT p.id,p.nombre,p.precio,p.descripcion,p.categorias_id FROM productos p ";
 	private static final String SQL_DELETE_PROD = "DELETE  FROM productos p  WHERE id=?";
+	private static final String SQL_LAST_NUM_PROD = "SELECT id  FROM productos order by id desc limit 1";
 	
 	// SINGLETON
 
@@ -125,6 +126,23 @@ public class DaoMySqlProducto implements Dao<Producto> {
 	
 		
 		
+	}
+	
+	public int obtenerNumProd() {
+		try (Connection con = getConexion();
+				PreparedStatement pst = con.prepareStatement(SQL_LAST_NUM_PROD)) {
+
+			ResultSet rs=pst.executeQuery();
+			int i=0;
+			if(rs.next()) {
+				i=rs.getInt("id");
+			}
+			return i;
+			
+
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+		}
 	}
 	
 }

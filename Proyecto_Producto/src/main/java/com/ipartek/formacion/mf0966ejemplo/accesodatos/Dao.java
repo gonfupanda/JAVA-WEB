@@ -27,6 +27,9 @@ public interface Dao<T> {
 	default void borrar(Long id) {
 		throw new UnsupportedOperationException("No está implementada esta operación");
 	}
+	default int obtenerNumProd() {
+		throw new UnsupportedOperationException("No está implementada esta operación");
+	}
 	default Set<Linea> obtenerLineas(Long id) {
 		throw new UnsupportedOperationException("No está implementada esta operación");
 	}

@@ -43,4 +43,40 @@
     <servlet-name>FacturasProductoListado</servlet-name>
     <url-pattern>/FacturasProductoListado</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AnadirCarrito</display-name>
+    <servlet-name>AnadirCarrito</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.carrito.AnadirCarrito</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnadirCarrito</servlet-name>
+    <url-pattern>/AnadirCarrito</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>com.ipartek.formacion.mf0966ejemplo.carrito.InicializarCarrito</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.ipartek.formacion.mf0966ejemplo.carrito.InicializarCarrito</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
 </web-app>
