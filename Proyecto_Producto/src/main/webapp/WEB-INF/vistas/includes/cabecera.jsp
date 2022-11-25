@@ -14,6 +14,27 @@
 <meta charset="UTF-8">
 <title>UF2218 Ejemplo</title>
 
+<style>
+	.nombreLista{
+		position: relative;
+	}
+	.nombreLista .badge{
+		  position: absolute;
+		  top: -10px;
+		  left: 50px;
+		  background: red;
+		  width: 15px;
+		  border-radius: 50%;
+		  display: flex;
+		  color: white;
+		  padding: 4px;
+	}
+	.cart {
+	  position: relative;
+	}
+
+</style>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
 
@@ -45,14 +66,26 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<c:if test="${sessionScope.usuario != null}">
 					<li class="nav-item"><a class="nav-link" href="admin/producto">New Producto</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/productos">Productos</a></li>
-						<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
+					<li class="nav-item">
+					<a class="nav-link " href="carrito">
+						<span  class="nombreLista">Carrito
+						<span  data-action="cart-can" class="badge rounded-circle">${sessionScope.carritoLenght}</span>
+						
+						</span>
+						 
+						
+					</a>
+					</li>
+				</c:if>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<c:if test="${sessionScope.usuario != null}">
 						
-						<li class="navbar-text">${sessionScope.usuario}</li>
+						<li class="navbar-text">${sessionScope.usuario.email} / ${sessionScope.usuario.rol.nombre}</li>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 					</c:if>
 					<c:if test="${sessionScope.usuario == null}">

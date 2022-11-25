@@ -11,24 +11,33 @@
 			<th class="text-end">Precio</th>
 			<th>Descripcion</th>
 			<th>categoria</th>
-			<th>Opciones</th>
+			<th></th>
+			<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
+				<th>Opciones</th>
+			</c:if>
 		
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${productos}" var="p">
 			<tr>
-				<td><img src="imgs/${p.id}.jpg" alt="${p.nombre}" style="height:80px; overflow:hidden;content-align:center "></td>
+				<td><img src="imgs/${p.id}.jpg" alt="${p.nombre}" onerror="this.onerror=null;this.src='http://craftsnippets.com/articles_images/placeholder/placeholder.jpg'" style="height:80px; overflow:hidden;content-align:center "></td>
 				<th class="text-end">${p.id}</th>
 				<td>${p.nombre}</td>		
 				<td class="text-end"><fmt:formatNumber type="currency" value="${p.precio}"/></td>
 				<td>${p.descripcion}</td>
 				<td>${p.categoria.id}</td>
+				<td><a href="addCarrito?id=${p.id}" class="btn btn-info" >Al carro</a></td>
+				<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
 				
-				<td><a class="btn btn-primary btn-sm"
-					href="admin/producto?id=${p.id}">Editar</a> <a
-					class="btn btn-danger btn-sm"
-					href="admin/producto/borrar?id=${p.id}">Borrar</a></td>
+					<td>
+						<a class="btn btn-primary btn-sm"
+						href="admin/producto?id=${p.id}">Editar</a> 
+						<a
+						class="btn btn-danger btn-sm"
+						href="admin/producto/borrar?id=${p.id}">Borrar</a>
+					</td>
+				</c:if>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -40,7 +49,12 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a class="btn btn-primary btn-sm" href="admin/producto">Añadir</a>
+			<td></td>
+			<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
+				<td><a class="btn btn-primary btn-sm" href="admin/producto">Añadir</a>
+			</c:if>
+			
+			
 			</td>
 		</tr>
 	</tfoot>

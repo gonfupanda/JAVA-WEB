@@ -7,36 +7,53 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.ipartek.formacion.mf0966ejemplo.modelos.Usuario;
+
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String LOGIN_JSP = "/WEB-INF/vistas/login.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-
-		String usuario = request.getParameter("usuario");
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("usuario");
 		String password = request.getParameter("password");
-
-		if (validarLogin(usuario, password)) {
-			request.getSession().setAttribute("usuario", usuario);
-			response.sendRedirect(request.getContextPath() + "/admin/productos");
+		
+		Usuario usuario = new Usuario(null, email, password);
+		
+		Usuario usuarioValidado = validarUsuario(usuario);
+		
+		if(usuarioValidado != null) {
+			request.getSession().setAttribute("usuario", usuarioValidado);
+			
+			if(usuarioValidado.getRol().getNombre().equals("ADMIN")) {
+				response.sendRedirect(request.getContextPath() + "/admin/productos");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/index");
+			}
 		} else {
-			request.setAttribute("alertaNivel", "danger");
-			request.setAttribute("alertaMensaje", "Usuario o contraseña incorrectos");
-
 			request.setAttribute("usuario", usuario);
-			request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
+			
+			request.setAttribute("alertaMensaje", "No es válido el usuario");
+			request.setAttribute("alertaNivel", "danger");
+			
+			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
 	}
 
-	private boolean validarLogin(String usuario, String password) {
-		return "gonza".equals(usuario) && "gonza".equals(password);
+	private Usuario validarUsuario(Usuario usuario) {
+		Usuario recibido = Globales.DAO_USUARIOS.obtenerPorEmail(usuario.getEmail());
+		
+		if(usuario.getPassword().equals(recibido.getPassword())) {
+			return recibido;
+		} else {
+			return null;
+		}
 	}
 
 }

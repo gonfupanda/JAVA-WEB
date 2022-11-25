@@ -16,14 +16,39 @@ import com.ipartek.formacion.mf0966ejemplo.controladores.Globales;
 public class AnadirCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		boolean esta=false;
+		int index=0;
 
-		String id_prod = request.getParameter("id");
-		String cantidad = request.getParameter("cantidad");
-		Lista l = new Lista(Integer.parseInt(id_prod),Integer.parseInt(cantidad));
+		Long id_prod = Long.parseLong(request.getParameter("id"));
+		int cantidad=1;
+		ArrayList<Lista>a=(ArrayList<Lista>) request.getSession().getAttribute("carrito");
 		
-		((ArrayList<Lista>)request.getAttribute("carrito")).add(l);
+		for(Lista li:a) {
+			
+			if(li.getProd().getId().equals(id_prod)) {
+				cantidad=li.getCantidad()+1;
+				((ArrayList<Lista>)request.getSession().getAttribute("carrito")).get(index).setCantidad(cantidad);
+				esta=true;
+			}else {
+				index++;
+			}
+		}
+		if(!esta) {
+			Lista l = new Lista(Globales.DAO_PRODUCTO.obtenerPorId(id_prod),cantidad);
+			
+			if(request.getSession().getAttribute("carrito")!=null) {
+				((ArrayList<Lista>)request.getSession().getAttribute("carrito")).add(l);
+			}
+			
+		}
+		 request.getSession().setAttribute("carritoLenght",a.size());
+		
+		
+		
+		response.sendRedirect(request.getContextPath() + "/admin/productos");
 
 		
 			//request.getSession().setAttribute("usuario", usuario);

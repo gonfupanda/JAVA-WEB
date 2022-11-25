@@ -79,4 +79,33 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>AdminFilter</display-name>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>filtros.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/AdminFilter</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IndexPrincipal</display-name>
+    <servlet-name>IndexPrincipal</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.IndexPrincipal</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexPrincipal</servlet-name>
+    <url-pattern>/IndexPrincipal</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListadoCarrito</display-name>
+    <servlet-name>ListadoCarrito</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.ListadoCarrito</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListadoCarrito</servlet-name>
+    <url-pattern>/ListadoCarrito</url-pattern>
+  </servlet-mapping>
 </web-app>

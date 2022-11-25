@@ -20,15 +20,13 @@ import lombok.NoArgsConstructor;
 public class InicializarCarrito implements HttpSessionListener {
 
 	    ServletContext ctx=null;  
-	    static boolean logged=false; 
       
 	    public void sessionCreated(HttpSessionEvent e) {  
-		    logged=true;
 		    ArrayList<Lista>carrito= new ArrayList<Lista>();
-	      
-		    ctx=e.getSession().getServletContext();  
-		   // ((HttpSessionEvent) ctx).getSession().setAttribute("carrito",carrito);
-		    ctx.setAttribute("carrito",carrito ); 
+		    e.getSession().setAttribute("carrito",carrito );
+		    e.getSession().setAttribute("carritoLenght",0 );
+		    //ctx=e.getSession().getServletContext();  
+		    //ctx.setAttribute("carrito",carrito ); 
       
 	    } 
 
@@ -37,7 +35,7 @@ public class InicializarCarrito implements HttpSessionListener {
 	@AllArgsConstructor
 	@NoArgsConstructor
 	public static class Lista {
-		private int prod_id;
+		private Producto prod;
 		private int cantidad;
 	}
 	

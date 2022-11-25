@@ -7,7 +7,7 @@
 		<label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
 		<div class="col-sm-10">
 			<input type="text" class="form-control" id="usuario" name="usuario"
-				value="${usuario}">
+				value="${usuario.email}">
 		</div>
 	</div>
 	<div class="row mb-3">
