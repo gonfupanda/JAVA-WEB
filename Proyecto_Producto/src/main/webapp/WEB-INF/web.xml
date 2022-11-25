@@ -108,4 +108,14 @@
     <servlet-name>ListadoCarrito</servlet-name>
     <url-pattern>/ListadoCarrito</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BorrarCarrito</display-name>
+    <servlet-name>BorrarCarrito</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.carrito.BorrarCarrito</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BorrarCarrito</servlet-name>
+    <url-pattern>/BorrarCarrito</url-pattern>
+  </servlet-mapping>
 </web-app>

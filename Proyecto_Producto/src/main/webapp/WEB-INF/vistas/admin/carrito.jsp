@@ -9,6 +9,7 @@
 			<th>imagen</th>
 			<th>nombre</th>
 			<th>cantidad</th>
+			<th></th>
 		
 		</tr>
 	</thead>
@@ -19,12 +20,15 @@
 				<td><img src="imgs/${c.prod.id}.jpg" alt="${c.prod.nombre}" onerror="this.onerror=null;this.src='http://craftsnippets.com/articles_images/placeholder/placeholder.jpg'" style="height:80px; overflow:hidden;content-align:center "></td>
 				<td>${c.prod.nombre}</td>	
 				<td>${c.cantidad}</td>	
+				<td><a class="btn btn-primary btn-sm"
+						href="deleteCarrito?id=${c.prod.id}">Quitar</a> <td>
 
 			</tr>
 		</c:forEach>
 	</tbody>
 	<tfoot class="table-dark">
 		<tr>
+			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
