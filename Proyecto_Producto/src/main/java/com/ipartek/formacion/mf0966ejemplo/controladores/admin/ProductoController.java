@@ -24,13 +24,15 @@ maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ProductoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "imgs";
-       
+    
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 			String id = request.getParameter("id");
 
-			if ( id != null && id!="" ) {
+			if ( id != null && !id.equals("") ) {
 				Producto producto = Globales.DAO_PRODUCTO.obtenerPorId(Long.parseLong(id));
+				
 				request.setAttribute("producto", producto);
 			}
 
@@ -40,6 +42,7 @@ public class ProductoController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
@@ -66,7 +69,7 @@ public class ProductoController extends HttpServlet {
 			    fileName = part.getSubmittedFileName();
 				
 			    if(fileName != null) {
-					part.write(uploadPath + File.separator + Globales.DAO_PRODUCTO.obtenerNumProd() + ".jpg"); //fileName);
+					part.write(uploadPath + File.separator + Globales.DAO_PRODUCTO.obtenerNumProd() + ".jpg");
 				}
 			}
 	
@@ -78,7 +81,7 @@ public class ProductoController extends HttpServlet {
 			    fileName = part.getSubmittedFileName();
 				
 			    if(fileName != null) {
-					part.write(uploadPath + File.separator + id + ".jpg"); //fileName);
+					part.write(uploadPath + File.separator + id + ".jpg");
 				}
 			}
 	

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 
 
-	public Cliente(long long1, String string, String string2, String string3, Set<Factura> facturas2) {
+	public Cliente(long long1, String string, String string2, String string3) {
 		setId(long1);
 		setNombre(string);
 		setNif(string2);
@@ -25,5 +25,5 @@ public class Cliente {
 	private String nif;
 	private String email;
 
-	private final Set<Factura> facturas = new HashSet<Factura>();
+	private final Set<Factura> facturas = new HashSet<>();
 }

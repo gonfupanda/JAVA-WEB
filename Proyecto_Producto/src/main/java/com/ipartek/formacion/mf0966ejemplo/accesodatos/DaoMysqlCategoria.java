@@ -40,10 +40,11 @@ private static final String SQL_SELECT_ID = "SELECT * FROM categorias WHERE id=?
 			throw new AccesoDatosException("No se ha podido recibir las categorias", e);
 		}
 	}
+	@Override
 	public Categoria obtenerPorId(Long idd) {
-		try (Connection con = getConexion()){
+		try (Connection con = getConexion();PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);){
 				
-				PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);
+				
 
 				pst.setLong(1, idd);
 				ResultSet rs = pst.executeQuery();
@@ -58,5 +59,5 @@ private static final String SQL_SELECT_ID = "SELECT * FROM categorias WHERE id=?
 			throw new AccesoDatosException("No se ha podido recibir las categorias", e);
 		}
 	
-		}
+	}
 }

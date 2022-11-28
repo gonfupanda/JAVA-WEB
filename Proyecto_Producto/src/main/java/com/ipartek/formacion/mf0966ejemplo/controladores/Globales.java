@@ -13,9 +13,10 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Cliente;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Empleado;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Factura;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
-import com.ipartek.formacion.mf0966ejemplo.modelos.Usuario;
 
 public class Globales {
+	private Globales() {
+	}
 	public static final DaoUsuario DAO_USUARIOS = DaoMySqlUsuarios.getInstancia();
 	public static final Dao<Producto> DAO_PRODUCTO = DaoMySqlProducto.getInstancia();
 	public static final Dao<Categoria> DAO_CATEGORIA = DaoMysqlCategoria.getInstancia();

@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.ipartek.formacion.mf0966ejemplo.modelos.Cliente;
-import com.ipartek.formacion.mf0966ejemplo.modelos.Factura;
 
 public class DaoMysqlCliente implements Dao<Cliente> {
 	private static final String SQL_SELECT_ID = "SELECT c.id, c.nombre, c.nif, c.email FROM clientes c, facturas f"
@@ -37,10 +33,9 @@ public class DaoMysqlCliente implements Dao<Cliente> {
 			ResultSet rs = pst.executeQuery();
 			
 			Cliente cli = null;
-			Set<Factura> facturas = null;
 			
 			if(rs.next()) {
-				cli = new Cliente(rs.getLong("c.id"),rs.getString("c.nombre"),rs.getString("c.nif"),rs.getString("c.email"),facturas);
+				cli = new Cliente(rs.getLong("c.id"),rs.getString("c.nombre"),rs.getString("c.nif"),rs.getString("c.email"));
 			}
 			
 			return cli;

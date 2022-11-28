@@ -3,24 +3,25 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
 <table class="table table-striped table-hover table-bordered">
+<caption class="d-none">Listado Facturas Producto</caption>
 	<thead class="table-dark">
 		<tr>
-			<th class="text-end">Id</th>
-			<th>Nombre</th>
-			<th>Descripcion</th>
+			<th class="text-end" scope="col">Id</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Descripcion</th>
 			
-			<th>categoria</th>
-			<th>Cantidad</th>
-			<th class="text-end">Precio</th>
+			<th scope="col">categoria</th>
+			<th scope="col">Cantidad</th>
+			<th class="text-end" scope="col">Precio</th>
 			
-			<th>valor</th>
+			<th scope="col">valor</th>
 		
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${lineas}" var="l">
 			<tr>
-				<th class="text-end">${l.producto.id}</th>
+				<td class="text-end">${l.producto.id}</td>
 				<td>${l.producto.nombre}</td>		
 				<td>${l.producto.descripcion}</td>
 				<td>${l.producto.categoria.id}</td>

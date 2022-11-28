@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.ipartek.formacion.mf0966ejemplo.modelos.Categoria;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Empleado;
-import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 public class DaoMysqlEmpleado implements Dao<Empleado> {
 	

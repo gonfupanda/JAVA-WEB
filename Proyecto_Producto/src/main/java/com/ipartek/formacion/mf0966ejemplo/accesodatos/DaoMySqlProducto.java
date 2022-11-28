@@ -1,7 +1,6 @@
 package com.ipartek.formacion.mf0966ejemplo.accesodatos;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +12,13 @@ import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 public class DaoMySqlProducto implements Dao<Producto> {
 
 	private static final String SQL_SELECT_ID = "SELECT p.id, p.nombre, p.precio, p.descripcion, c.id, c.nombre, c.descripcion FROM productos p, categorias c WHERE p.categorias_id = c.id AND p.id = ?";
-	private static final String sqlInsert = "INSERT INTO productos (id, nombre,precio,descripcion,categorias_id) VALUES ( null,?,?,?,?)";
-	private static final String sqlUpdate_producto = "UPDATE productos SET nombre=?,precio=?,descripcion=?,categorias_id=? WHERE id=?";
+	private static final String SQL_INSERT = "INSERT INTO productos (id, nombre,precio,descripcion,categorias_id) VALUES ( null,?,?,?,?)";
+	private static final String SQL_UPDATE_PROD = "UPDATE productos SET nombre=?,precio=?,descripcion=?,categorias_id=? WHERE id=?";
 	private static final String SQL_SELECT_ALL = "SELECT p.id,p.nombre,p.precio,p.descripcion,p.categorias_id FROM productos p ";
 	private static final String SQL_DELETE_PROD = "DELETE  FROM productos p  WHERE id=?";
 	private static final String SQL_LAST_NUM_PROD = "SELECT id  FROM productos order by id desc limit 1";
+	
+	private static final String PROD_EXCEPTION = "No se ha podido obtener el producto";
 	
 	// SINGLETON
 
@@ -30,7 +31,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 		return INSTANCIA;
 	}
 	// FIN SINGLETON
-	
+	@Override
 	public Iterable<Producto> obtenerTodos(){
 		try (Connection con = getConexion();
 				PreparedStatement pst = con.prepareStatement(SQL_SELECT_ALL)) {
@@ -39,7 +40,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			ResultSet rs = pst.executeQuery();
 			
 			Producto producto = null;
-			ArrayList<Producto> li = new ArrayList();
+			ArrayList<Producto> li = new ArrayList<>();
 			
 			while(rs.next()) {
 				Categoria categoria = new Categoria(rs.getLong("p.categorias_id"), null, null);
@@ -49,7 +50,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			
 			return li;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 		
 	}
@@ -71,12 +72,13 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			
 			return producto;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 	}
+	@Override
 	public Producto insertar(Producto objeto) {
 		try (Connection con = getConexion();
-				PreparedStatement pst = con.prepareStatement(sqlInsert)) {
+				PreparedStatement pst = con.prepareStatement(SQL_INSERT)) {
 			
 			pst.setString(1, objeto.getNombre());
 			pst.setDouble(2, objeto.getPrecio().doubleValue());
@@ -87,14 +89,14 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			
 
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 		return objeto;
 	}
-	
+	@Override
 	public Producto modificar(Producto objeto) {
 		try (Connection con = getConexion();
-				PreparedStatement pst = con.prepareStatement(sqlUpdate_producto)) {
+				PreparedStatement pst = con.prepareStatement(SQL_UPDATE_PROD)) {
 			
 			pst.setString(1, objeto.getNombre());
 			pst.setDouble(2, objeto.getPrecio().doubleValue());
@@ -107,12 +109,12 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			
 
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 		return objeto;
 	}
 	
-	
+	@Override
 	public void borrar(Long id) {
 		try (Connection con = getConexion();
 				PreparedStatement pst = con.prepareStatement(SQL_DELETE_PROD)) {
@@ -121,13 +123,13 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			pst.executeUpdate();		
 
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 	
 		
 		
 	}
-	
+	@Override
 	public int obtenerNumProd() {
 		try (Connection con = getConexion();
 				PreparedStatement pst = con.prepareStatement(SQL_LAST_NUM_PROD)) {
@@ -141,7 +143,7 @@ public class DaoMySqlProducto implements Dao<Producto> {
 			
 
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido obtener el producto", e);
+			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 	}
 	

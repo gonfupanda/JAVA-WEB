@@ -6,7 +6,7 @@
 <fmt:setLocale value="es-ES" />
 
 <!DOCTYPE html>
-<html class="h-100">
+<html class="h-100" lang="es">
 <head>
 
 <base href="${pageContext.request.contextPath}/" />

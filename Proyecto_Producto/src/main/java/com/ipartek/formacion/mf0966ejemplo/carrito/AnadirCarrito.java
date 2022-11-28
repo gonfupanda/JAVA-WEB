@@ -15,47 +15,53 @@ import com.ipartek.formacion.mf0966ejemplo.controladores.Globales;
 @WebServlet("/addCarrito")
 public class AnadirCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String CARRITO="carrito";
        
 	@SuppressWarnings("unchecked")
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		boolean esta=false;
 		int index=0;
 
-		Long id_prod = Long.parseLong(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("id"));
 		int cantidad=1;
-		ArrayList<Lista>a=(ArrayList<Lista>) request.getSession().getAttribute("carrito");
+		ArrayList<Lista>a=(ArrayList<Lista>) request.getSession().getAttribute(CARRITO);
+		int tamCarrito=0;
+
+		
 		
 		for(Lista li:a) {
 			
-			if(li.getProd().getId().equals(id_prod)) {
+			tamCarrito=tamCarrito+li.getCantidad();
+			if(li.getProd().getId().equals(id)) {
 				cantidad=li.getCantidad()+1;
-				((ArrayList<Lista>)request.getSession().getAttribute("carrito")).get(index).setCantidad(cantidad);
+				((ArrayList<Lista>)request.getSession().getAttribute(CARRITO)).get(index).setCantidad(cantidad);
+				tamCarrito++;
 				esta=true;
 			}else {
 				index++;
 			}
 		}
 		if(!esta) {
-			Lista l = new Lista(Globales.DAO_PRODUCTO.obtenerPorId(id_prod),cantidad);
+			Lista l = new Lista(Globales.DAO_PRODUCTO.obtenerPorId(id),cantidad);
 			
-			if(request.getSession().getAttribute("carrito")!=null) {
-				((ArrayList<Lista>)request.getSession().getAttribute("carrito")).add(l);
+			if(request.getSession().getAttribute(CARRITO)!=null) {
+				((ArrayList<Lista>)request.getSession().getAttribute(CARRITO)).add(l);
 			}
+			tamCarrito++;
 			
 		}
-		 request.getSession().setAttribute("carritoLenght",a.size());
+		 request.getSession().setAttribute("carritoLenght",tamCarrito);
 		
 		
 		
 		response.sendRedirect(request.getContextPath() + "/admin/productos");
 
 		
-			//request.getSession().setAttribute("usuario", usuario);
-			//response.sendRedirect(request.getContextPath() + "/index");
 	} 
 	
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

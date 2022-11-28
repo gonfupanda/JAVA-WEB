@@ -2,13 +2,10 @@ package com.ipartek.formacion.mf0966ejemplo.carrito;
 
 import java.util.ArrayList;
 
-import com.ipartek.formacion.mf0966ejemplo.carrito.InicializarCarrito.Lista;
-import com.ipartek.formacion.mf0966ejemplo.modelos.Factura;
+
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 import jakarta.servlet.ServletContext;
-import jakarta.servlet.annotation.WebListener;
-import jakarta.servlet.http.HttpSessionActivationListener;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 import lombok.AllArgsConstructor;
@@ -21,12 +18,12 @@ public class InicializarCarrito implements HttpSessionListener {
 
 	    ServletContext ctx=null;  
       
+	    @Override
 	    public void sessionCreated(HttpSessionEvent e) {  
-		    ArrayList<Lista>carrito= new ArrayList<Lista>();
+		    ArrayList<Lista>carrito= new ArrayList<>();
 		    e.getSession().setAttribute("carrito",carrito );
 		    e.getSession().setAttribute("carritoLenght",0 );
-		    //ctx=e.getSession().getServletContext();  
-		    //ctx.setAttribute("carrito",carrito ); 
+
       
 	    } 
 
