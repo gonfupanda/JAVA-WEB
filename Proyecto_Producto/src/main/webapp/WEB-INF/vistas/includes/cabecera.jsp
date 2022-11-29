@@ -43,21 +43,14 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>
 
-<script>
-	$(document).ready(function() {
-		$('table').DataTable({
-			language : {
-				url : 'json/es-ES.json'
-			}
-		});
-	});
-</script>
+<script src="js/datatables.js"></script>
+<script src="js/cantidad.js"></script>
 
 </head>
 <body class="d-flex flex-column h-100">
 	<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">UF2218 Ejemplo</a>
+			<a class="navbar-brand" href="#">Principal</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -70,7 +63,9 @@
 					<li class="nav-item"><a class="nav-link" href="admin/producto">New Producto</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/productos">Productos</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
-					<li class="nav-item">
+					
+				</c:if>
+				<li class="nav-item">
 					<a class="nav-link " href="carrito">
 						<span  class="nombreLista">Carrito
 						<span  data-action="cart-can" class="badge rounded-circle">${sessionScope.carritoLenght}</span>
@@ -80,7 +75,6 @@
 						
 					</a>
 					</li>
-				</c:if>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<c:if test="${sessionScope.usuario != null}">

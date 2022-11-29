@@ -1,8 +1,9 @@
 package com.ipartek.formacion.mf0966ejemplo.carrito;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
-
+import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 import jakarta.servlet.ServletContext;
@@ -20,8 +21,7 @@ public class InicializarCarrito implements HttpSessionListener {
       
 	    @Override
 	    public void sessionCreated(HttpSessionEvent e) {  
-		    ArrayList<Lista>carrito= new ArrayList<>();
-		    e.getSession().setAttribute("carrito",carrito );
+		    e.getSession().setAttribute("carrito",new Pedido() );
 		    e.getSession().setAttribute("carritoLenght",0 );
 
       
@@ -34,6 +34,10 @@ public class InicializarCarrito implements HttpSessionListener {
 	public static class Lista {
 		private Producto prod;
 		private int cantidad;
+		
+		public BigDecimal getTotal() {
+			return this.prod.getPrecio().multiply(new BigDecimal(cantidad));
+		}
 	}
 	
 }

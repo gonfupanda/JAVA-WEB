@@ -2,6 +2,7 @@ package filtros;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -14,9 +15,9 @@ import java.io.IOException;
 
 import com.ipartek.formacion.mf0966ejemplo.modelos.Usuario;
 
-@WebFilter("/admin/*")
-public class AdminFilter extends HttpFilter implements Filter {
-	private static final long serialVersionUID = 1L;
+@WebFilter("/checkout")
+public class CheckOutFilter extends HttpFilter implements Filter {
+       
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -27,14 +28,16 @@ public class AdminFilter extends HttpFilter implements Filter {
 
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-		if (usuario != null && usuario.getRol() != null && usuario.getRol().getNombre().equals("ADMIN")) {
+		if (usuario != null) {
 			chain.doFilter(request, response);
 		} else {
-			req.setAttribute("alertaMensaje", "Debes ser administrador para acceder a esa zona");
+			req.setAttribute("alertaMensaje", "Debes estar logeado para acceder a esa zona");
 			req.setAttribute("alertaNivel", "danger");
 
 			req.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
 		}
 	}
-}
 
+
+
+}

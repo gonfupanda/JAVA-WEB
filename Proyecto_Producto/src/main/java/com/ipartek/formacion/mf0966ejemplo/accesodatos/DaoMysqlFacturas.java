@@ -48,7 +48,7 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 			while(rs.next()) {		
 				fact = new Factura(rs.getLong("f.id"),rs.getString("f.codigo"),rs.getDate("f.fecha").toLocalDate(),
 						Globales.DAO_CLIENTE.obtenerPorId(rs.getLong("f.clientes_id")),
-						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")),obtenerLineas(rs.getLong("f.id")));		
+						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")));		
 				li.add(fact);
 			}
 			
@@ -72,7 +72,7 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 			if(rs.next()) {
 				em = new Factura(rs.getLong("f.id"),rs.getString("f.codigo"),rs.getDate("f.fecha").toLocalDate(),
 						Globales.DAO_CLIENTE.obtenerPorId(rs.getLong("f.clientes_id")),
-						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")),null);
+						Globales.DAO_EMPLEADO.obtenerPorId(rs.getLong("f.empleados_id")));
 			}
 			
 			return em;

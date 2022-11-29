@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.ipartek.formacion.mf0966ejemplo.carrito.InicializarCarrito.Lista;
+import com.ipartek.formacion.mf0966ejemplo.controladores.Globales;
+import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
+import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
 
 @WebServlet("/deleteCarrito")
 public class BorrarCarrito extends HttpServlet {
@@ -20,27 +23,20 @@ public class BorrarCarrito extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int index=0;
 		Long id = Long.parseLong(request.getParameter("id"));
-		int tam=(int) request.getSession().getAttribute("carritoLenght")-1;
+		Producto prod=Globales.DAO_PRODUCTO.obtenerPorId(id);
+		Pedido pedido= (Pedido) request.getSession().getAttribute(CARRITO);
 		
-		ArrayList<Lista>b=(ArrayList<Lista>) request.getSession().getAttribute(CARRITO);
-				
-		for(Lista li:b) {
+		pedido.eliminar(prod);
+		
+		request.setAttribute("alertaMensaje", "Producto eliminado del carrito");
+		request.setAttribute("alertaNivel", "danger");
 			
-			if(li.getProd().getId().equals(id)) {
-				break;					
-			}else {
-				index++;
-			}
+		
+		int tamCarrito=0;
+		for(Lista li:pedido.getLineas()) {
+			tamCarrito=tamCarrito+li.getCantidad();
 		}
-		if(b.get(index).getCantidad()!=1) {
-			((ArrayList<Lista>)request.getSession().getAttribute(CARRITO)).get(index).setCantidad(b.get(index).getCantidad()-1);
-		}else {
-			((ArrayList<Lista>)request.getSession().getAttribute(CARRITO)).remove(index);
-			request.setAttribute("alertaMensaje", "Producto eliminado del carrito");
-			request.setAttribute("alertaNivel", "danger");
-			
-		}
-		 request.getSession().setAttribute("carritoLenght",tam);
+		request.getSession().setAttribute("carritoLenght",tamCarrito);
 		response.sendRedirect(request.getContextPath() + "/carrito");
 		
 	}

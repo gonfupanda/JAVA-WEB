@@ -16,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${carrito}" var="c">
+		<c:forEach items="${carrito.lineas}" var="c">
 			<tr>
 				<td class="text-end" >${c.prod.id}</td>
 				<td><img src="imgs/${c.prod.id}.jpg" alt="${c.prod.nombre}" onerror="this.onerror=null;this.src='http://craftsnippets.com/articles_images/placeholder/placeholder.jpg'" style="height:80px; overflow:hidden;content-align:center "></td>
@@ -44,5 +44,8 @@
 		</tr>
 	</tfoot>
 </table>
+<a class="btn btn-primary w-100 mb-3" href="">Volver al listado de productos</a>
+
+<a class="btn btn-primary w-100" href="checkout">Pagar</a>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

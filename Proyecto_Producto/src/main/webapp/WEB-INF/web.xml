@@ -118,4 +118,23 @@
     <servlet-name>BorrarCarrito</servlet-name>
     <url-pattern>/BorrarCarrito</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>CheckOutFilter</display-name>
+    <filter-name>CheckOutFilter</filter-name>
+    <filter-class>filtros.CheckOutFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CheckOutFilter</filter-name>
+    <url-pattern>/CheckOutFilter</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckOutController</display-name>
+    <servlet-name>CheckOutController</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.carrito.CheckOutController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckOutController</servlet-name>
+    <url-pattern>/CheckOutController</url-pattern>
+  </servlet-mapping>
 </web-app>
