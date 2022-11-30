@@ -20,21 +20,23 @@ public class Pedido {
 	
 	public void guardar(Integer cantidad, Producto producto) {
 		Long id = producto.getId();
+		boolean estaProductoEnCarrito = lineas.containsKey(id);
 
+		if (cantidad <= 0 && !estaProductoEnCarrito) {
+			return;
+		}
 
-		if (lineas.containsKey(id)) {
-			Lista linea = lineas.get(id);
+		if (!estaProductoEnCarrito) {
+			lineas.put(producto.getId(), new Lista(producto, cantidad));
+			return;
+		}
 
-			if (cantidad > 0) {
-				linea.setCantidad(cantidad);
-			} else {
-				lineas.remove(id);
-			}
+		Lista linea = lineas.get(id);
 
+		if (cantidad > 0) {
+			linea.setCantidad(cantidad);
 		} else {
-			if(cantidad!=0) {
-				lineas.put(producto.getId(), new Lista(producto, cantidad));
-			}		
+			lineas.remove(id);
 		}
 	}
 	public void eliminar(Producto producto) {
