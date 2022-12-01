@@ -137,4 +137,14 @@
     <servlet-name>CheckOutController</servlet-name>
     <url-pattern>/CheckOutController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CarritoTotalControler</display-name>
+    <servlet-name>CarritoTotalControler</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.carrito.CarritoTotalControler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarritoTotalControler</servlet-name>
+    <url-pattern>/CarritoTotalControler</url-pattern>
+  </servlet-mapping>
 </web-app>

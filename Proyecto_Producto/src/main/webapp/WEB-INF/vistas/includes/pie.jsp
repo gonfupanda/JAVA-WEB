@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 </div>
-<footer class="bg-dark text-light p-3 mt-auto">
+<footer class="bg-dark text-light p-3 mt-auto d-print-none">
 	<p>&copy; 2022 Gonzalo Padierna</p>
 </footer>
 
