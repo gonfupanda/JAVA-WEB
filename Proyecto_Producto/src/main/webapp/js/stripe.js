@@ -17,7 +17,7 @@ document
 async function initialize() {
 	console.log('Antes de la petición');
 	
-	const response = await fetch("http://localhost:8080/mf0966ejemplo/stripe", {
+	const response = await fetch("http://localhost:8080/Proyecto_Producto/stripe", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ items }),
@@ -50,7 +50,7 @@ async function handleSubmit(e) {
 		elements,
 		confirmParams: {
 			// Make sure to change this to your payment completion page
-			return_url: "http://localhost:8080/mf0966ejemplo/stripe",
+			return_url: "http://localhost:8080/Proyecto_Producto/stripe",
 		},
 	});
 
