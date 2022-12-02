@@ -37,6 +37,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="css/stripe.css" />
 
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>
@@ -45,7 +46,8 @@
 
 <script src="js/datatables.js"></script>
 <script src="js/cantidad.js"></script>
-<script src="js/cantidad-total.js"></script>
+<script src="js/cantidadTotal.js"></script>
+
 
 </head>
 <body class="d-flex flex-column h-100">

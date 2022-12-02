@@ -147,4 +147,14 @@
     <servlet-name>CarritoTotalControler</servlet-name>
     <url-pattern>/CarritoTotalControler</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StriperController</display-name>
+    <servlet-name>StriperController</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.StriperController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StriperController</servlet-name>
+    <url-pattern>/StriperController</url-pattern>
+  </servlet-mapping>
 </web-app>

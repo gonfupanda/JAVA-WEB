@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.ipartek.formacion.mf0966ejemplo.carrito.InicializarCarrito.Lista;
 import com.ipartek.formacion.mf0966ejemplo.controladores.Globales;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Producto;
@@ -42,8 +43,14 @@ public class CarritoTotalControler extends HttpServlet {
 
 			pedido.guardar(cantidad, producto);
 		}
+		int tamCarrito=0;
+		for(Lista li:pedido.getLineas()) {
+			tamCarrito=tamCarrito+li.getCantidad();
+		}
+		request.getSession().setAttribute("carritoLenght",tamCarrito);
 
-		request.getRequestDispatcher("/WEB-INF/vistas/carrito.jsp").forward(request, response);
+		//request.getRequestDispatcher("/WEB-INF/vistas/carrito.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/carrito");
 	}
 
 	@Override
