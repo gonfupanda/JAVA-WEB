@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/index");
 			}
 		} else {
-			request.setAttribute(USUARIO, usuario);
+			request.setAttribute(USUARIO, usuarioValidado);
 			
 			request.setAttribute("alertaMensaje", "No es válido el usuario");
 			request.setAttribute("alertaNivel", "danger");

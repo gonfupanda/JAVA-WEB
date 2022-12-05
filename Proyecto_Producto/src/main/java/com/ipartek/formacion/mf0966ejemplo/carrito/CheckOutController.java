@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.ipartek.formacion.mf0966ejemplo.controladores.Globales;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Factura;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Pedido;
 import com.ipartek.formacion.mf0966ejemplo.modelos.Usuario;
@@ -26,10 +27,9 @@ public class CheckOutController extends HttpServlet {
 		
 		Factura factura = new Factura(pedido);
 		
-		// TODO Usar un código autogenerado
-		factura.setCodigo("2022-0001");
 		factura.setCliente(usuario.getCliente());
 		factura.setFecha(LocalDate.now());
+		factura.setEmpleado(Globales.DAO_EMPLEADO.obtenerPorId(2L));
 		
 		session.setAttribute("factura", factura);
 		

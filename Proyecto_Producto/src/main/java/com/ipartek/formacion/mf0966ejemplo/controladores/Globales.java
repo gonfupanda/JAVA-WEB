@@ -23,4 +23,5 @@ public class Globales {
 	public static final Dao<Empleado> DAO_EMPLEADO = DaoMysqlEmpleado.getInstancia();
 	public static final Dao<Cliente> DAO_CLIENTE = DaoMysqlCliente.getInstancia();
 	public static final Dao<Factura> DAO_FACTURA = DaoMysqlFacturas.getInstancia();
+
 }
