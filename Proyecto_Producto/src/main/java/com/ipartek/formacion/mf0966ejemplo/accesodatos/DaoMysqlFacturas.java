@@ -31,6 +31,8 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 	
 
 	private static final String GET_LAST_COD = "SELECT codigo FROM facturas order by id desc limit 1";
+	private static final String SQL_ULTIMO_CODIGO = "SELECT MAX(codigo) FROM facturas WHERE SUBSTRING(codigo, 1, 4) = ?";
+
 
 	
 	private static final String PROD_EXCEPTION = "No se ha podido obtener el producto";
@@ -114,9 +116,13 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 	}
 	
 	@Override
-	public Factura insertar(Factura factura) {
+	public synchronized  Factura insertar(Factura factura) {
 		try (Connection con = getConexion()) {
+			
+			factura.setFecha(LocalDate.now());
+			factura.setCodigo(nuevoCodigoFactura(con, factura));
 			return insertarImpl(factura, con);
+			
 		} catch(Exception e) {
 			throw new AccesoDatosException("No se ha podido insertar la factura", e);
 		}
@@ -124,6 +130,7 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 	private Factura insertarImpl(Factura factura, Connection con) {
 		try (PreparedStatement pst = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			con.setAutoCommit(false);
+			con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
 			pst.setString(1, newCodigo());
 			pst.setDate(2, java.sql.Date.valueOf(factura.getFecha()));
@@ -206,5 +213,35 @@ public class DaoMysqlFacturas  implements Dao<Factura> {
 			throw new AccesoDatosException(PROD_EXCEPTION, e);
 		}
 		
+	}
+	
+	private String nuevoCodigoFactura(Connection con, Factura factura) {
+		String codigo = ultimoCodigoFactura(con, factura);
+
+		if(codigo == null) {
+			return factura.getFecha().getYear() + "-001";
+		}
+
+		String numeroTexto = codigo.substring(5);
+		int numero = Integer.parseInt(numeroTexto);
+		numero++;
+
+		return String.format("%tY-%03d", factura.getFecha(), numero);
+	}
+
+	private String ultimoCodigoFactura(Connection con, Factura factura) {
+		try (PreparedStatement pst = con.prepareStatement(SQL_ULTIMO_CODIGO)) {
+			pst.setString(1, String.valueOf(factura.getFecha().getYear()));
+
+			ResultSet rs = pst.executeQuery();
+
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+
+			return null;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido buscar el último código de factura", e);
+		}
 	}
 }

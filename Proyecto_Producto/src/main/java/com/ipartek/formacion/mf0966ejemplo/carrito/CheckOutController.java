@@ -28,7 +28,8 @@ public class CheckOutController extends HttpServlet {
 		Factura factura = new Factura(pedido);
 		
 		factura.setCliente(usuario.getCliente());
-		factura.setFecha(LocalDate.now());
+		//factura.setFecha(LocalDate.now());
+		factura.setFecha(null);
 		factura.setEmpleado(Globales.DAO_EMPLEADO.obtenerPorId(2L));
 		
 		session.setAttribute("factura", factura);
