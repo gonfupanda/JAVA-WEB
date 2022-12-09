@@ -11,7 +11,6 @@
 			<th class="text-end">Precio</th>
 			<th>Descripcion</th>
 			<th>categoria</th>
-			<th></th>
 			<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
 				<th>Opciones</th>
 			</c:if>
@@ -27,7 +26,6 @@
 				<td class="text-end"><fmt:formatNumber type="currency" value="${p.precio}"/></td>
 				<td>${p.descripcion}</td>
 				<td>${p.categoria.id}</td>
-				<td><a href="addCarrito?id=${p.id}" class="btn btn-info" >Al carro</a></td>
 				<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
 				
 					<td>
@@ -43,7 +41,6 @@
 	</tbody>
 	<tfoot class="table-dark">
 		<tr>
-			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
