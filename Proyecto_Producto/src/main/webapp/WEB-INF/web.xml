@@ -157,4 +157,14 @@
     <servlet-name>StriperController</servlet-name>
     <url-pattern>/StriperController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductoRestController</display-name>
+    <servlet-name>ProductoRestController</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.rest.ProductoRestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductoRestController</servlet-name>
+    <url-pattern>/ProductoRestController</url-pattern>
+  </servlet-mapping>
 </web-app>
