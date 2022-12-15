@@ -65,7 +65,7 @@ public class DaoMysqlEmpleado implements DAOEmpleado {
 			Empleado em = null;
 			
 			if(rs.next()) {
-				em = new Empleado(rs.getLong("id"),rs.getString("nombre"),rs.getString("nif"),null);
+				em = new Empleado(rs.getLong("id"),rs.getString("nombre"),rs.getString("nif"),obtenerPorId(rs.getLong("jefe_id")));
 			}
 			
 			return em;

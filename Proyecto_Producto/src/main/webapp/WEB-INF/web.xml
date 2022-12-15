@@ -167,4 +167,14 @@
     <servlet-name>ProductoRestController</servlet-name>
     <url-pattern>/ProductoRestController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpleadosController</display-name>
+    <servlet-name>EmpleadosController</servlet-name>
+    <servlet-class>com.ipartek.formacion.mf0966ejemplo.controladores.admin.EmpleadosController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpleadosController</servlet-name>
+    <url-pattern>/EmpleadosController</url-pattern>
+  </servlet-mapping>
 </web-app>
