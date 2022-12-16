@@ -122,30 +122,54 @@ public class DaoMysqlEmpleado implements DAOEmpleado {
 	
 	@Override
 	public Empleado insertar(Empleado empleado) {
-		try (Connection con = getConexion(); CallableStatement cst = con.prepareCall(SQL_INSERT);) {
+		try (Connection con = getConexion();) {
+			
+			return insercionEnTransaccion(empleado, con);
+			
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido insertar el empleado", e);
+		}
+	}
+	
+	private Empleado insercionEnTransaccion(Empleado empleado, Connection con) throws SQLException {
+		con.setAutoCommit(false);
+		
+		try (CallableStatement cst = con.prepareCall(SQL_INSERT)) {
 			cst.setString(1, empleado.getNombre());
 			cst.setString(2, empleado.getNif());
-			cst.setLong(3, empleado.getJefe().getId());
+			
+			if(empleado.getJefe() == null || empleado.getJefe().getId() == null || empleado.getJefe().getId() == 0) {
+				cst.setObject(3, null);
+			} else {
+				cst.setLong(3, empleado.getJefe().getId());
+			}
 			
 			ResultSet rs = cst.executeQuery();
 			
 			if(rs.next()) {
 				empleado.setId(rs.getLong(1));
 			}
-				
+			
+			con.commit();
+			
 			return empleado;
-		} catch (SQLException e) {
+		} catch(Exception e) {
+			con.rollback();
 			throw new AccesoDatosException("No se ha podido insertar el empleado", e);
 		}
 	}
+	
 	@Override
 	public Empleado modificar(Empleado empleado) {
 		try (Connection con = getConexion(); CallableStatement cst = con.prepareCall(SQL_UPDATE);) {
 			cst.setString(1, empleado.getNombre());
 			cst.setString(2, empleado.getNif());
-			cst.setLong(3, empleado.getJefe().getId());
 			cst.setLong(4,  empleado.getId());
-			
+			if(empleado.getJefe() == null || empleado.getJefe().getId() == null || empleado.getJefe().getId() == 0) {
+				cst.setObject(3, null);
+			} else {
+				cst.setLong(3, empleado.getJefe().getId());
+			}
 			cst.executeUpdate();
 			
 			return empleado;
