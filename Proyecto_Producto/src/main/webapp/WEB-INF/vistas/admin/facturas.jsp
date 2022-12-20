@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<table class="table table-striped table-hover table-bordered">
+<table class="decorada table table-striped table-hover table-bordered">
 <caption class="d-none">Listado Facturas</caption>
 	<thead class="table-dark">
 		<tr>
@@ -12,7 +12,6 @@
 			<th scope="col">Cliente</th>
 			<th scope="col">Empleado</th>
 			<th scope="col">Producto  Cantidad</th>
-			<th scope="col">Opciones</th>
 		
 		</tr>
 	</thead>
@@ -32,12 +31,6 @@
 				</c:forEach> 
 				</td>
 				--%>
-
-				
-				<td><a class="btn btn-primary btn-sm"
-					href="admin/producto?id=${f.id}">Editar</a> <a
-					class="btn btn-danger btn-sm"
-					href="admin/producto/borrar?id=${f.id}">Borrar</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -49,8 +42,6 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td></td>
-			<td><a class="btn btn-primary btn-sm" href="admin/producto">Añadir</a>
 			</td>
 		</tr>
 	</tfoot>

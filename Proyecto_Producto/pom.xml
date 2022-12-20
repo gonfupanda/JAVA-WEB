@@ -20,6 +20,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			
+			<!-- Hibernate-->
+			<dependency>
+			    <groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-core-jakarta</artifactId>
+			    <version>6.1.6.Final</version> 
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
   
@@ -103,6 +110,8 @@
 			<artifactId>gson</artifactId>
 			<version>2.10</version>
 		</dependency>
+		
+
 	
 	</dependencies>
   <build>

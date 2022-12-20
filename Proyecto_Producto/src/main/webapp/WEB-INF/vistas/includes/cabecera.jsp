@@ -67,6 +67,7 @@
 					<li class="nav-item"><a class="nav-link" href="admin/producto">New Producto</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/productos">Productos</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin/facturas">Listado facturas</a></li>
+					<li class="nav-item"><a class="nav-link" href="admin/empleados">Empleados</a></li>
 					
 				</c:if>
 				<li class="nav-item">
