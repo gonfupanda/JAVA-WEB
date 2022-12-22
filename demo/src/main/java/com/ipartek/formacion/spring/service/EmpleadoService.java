@@ -7,11 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.ipartek.formacion.accesodatos.Dao;
 import com.ipartek.formacion.spring.pojos.Empleado;
 import com.ipartek.formacion.spring.repos.EmpleadoRepo;
 
 @Service
-public class EmpleadoService {
+public class EmpleadoService implements Dao<Empleado> {
 	
     private EmpleadoRepo cat;
 	

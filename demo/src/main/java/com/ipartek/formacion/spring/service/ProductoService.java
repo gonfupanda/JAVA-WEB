@@ -7,11 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.ipartek.formacion.accesodatos.Dao;
 import com.ipartek.formacion.spring.pojos.Producto;
 import com.ipartek.formacion.spring.repos.ProductoRepo;
 
 @Service
-public class ProductoService {
+public class ProductoService  implements Dao<Producto>{
 
     private ProductoRepo cat;
 	
