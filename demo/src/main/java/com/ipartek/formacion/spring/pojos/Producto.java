@@ -37,7 +37,7 @@ public class Producto {
 	@Nonnull
 	private BigDecimal precio;
 	
-	@Column(name="desscripcion")
+	@Column(name="descripcion")
 	@Nonnull
 	private String descripcion;
 
