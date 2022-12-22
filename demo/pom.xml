@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<start-class>com.ipartek.formacion.spring.SpringrestAplication.java</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -75,6 +76,13 @@
 		    <artifactId>spring-data-jpa</artifactId>
 		    <version>3.0.0</version>
 		</dependency>
+		
+		 <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <scope>runtime</scope>
+        </dependency>
 		
 	</dependencies>
 
