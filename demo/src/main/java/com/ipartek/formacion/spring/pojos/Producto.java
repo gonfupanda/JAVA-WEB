@@ -1,15 +1,16 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigDecimal;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +20,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="roles")
-public class Rol {
-	
+@Table(name="productos")
+public class Producto {
+
 	@Column(name="id")
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
@@ -29,11 +30,18 @@ public class Rol {
 	private Long id;
 	
 	@Column(name="nombre")
+	@Nonnull
 	private String nombre;
 	
-	@Column(name="descripcion")
-	private String descripcion;
+	@Column(name="precio")
+	@Nonnull
+	private BigDecimal precio;
 	
-	 @OneToMany(mappedBy = "usuarios")
-	private final Set<Usuario> usuarios = new HashSet<>();
+	@Column(name="desscripcion")
+	@Nonnull
+	private String descripcion;
+
+	@ManyToOne
+    @JoinColumn(name="productos")
+	private Categoria categoria;
 }

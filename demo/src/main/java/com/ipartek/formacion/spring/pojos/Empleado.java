@@ -1,7 +1,8 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,9 +26,11 @@ public class Empleado {
 	private Long id;
 	
 	@Column(name="nombre")
+	@Nonnull
 	private String nombre;
 	
 	@Column(name="nif")
+	@Nonnull
 	private String nif;
 	
 	@ManyToOne

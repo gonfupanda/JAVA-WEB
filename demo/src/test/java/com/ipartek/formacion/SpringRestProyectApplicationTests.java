@@ -1,0 +1,13 @@
+package com.ipartek.formacion;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SpringRestProyectApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

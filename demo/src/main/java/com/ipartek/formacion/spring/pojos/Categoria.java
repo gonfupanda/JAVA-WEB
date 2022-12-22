@@ -1,10 +1,11 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,21 +20,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="roles")
-public class Rol {
-	
-	@Column(name="id")
+@Table(name="categorias")
+public class Categoria {
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
+	@Column(name="id")
 	@Id
 	private Long id;
 	
 	@Column(name="nombre")
+	@Nonnull
 	private String nombre;
 	
 	@Column(name="descripcion")
+	@Nonnull
 	private String descripcion;
 	
-	 @OneToMany(mappedBy = "usuarios")
-	private final Set<Usuario> usuarios = new HashSet<>();
+	 @OneToMany(mappedBy = "categoria")
+	 private List<Producto> productos = new ArrayList<>();
+	
+	
+	
+	   
 }

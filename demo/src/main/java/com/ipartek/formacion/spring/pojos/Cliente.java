@@ -1,15 +1,17 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,21 +21,38 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="roles")
-public class Rol {
-	
+@Table(name="clientes")
+public class Cliente {
+
+
+	public Cliente(long long1, String string, String string2, String string3) {
+		setId(long1);
+		setNombre(string);
+		setNif(string2);
+		setEmail(string3);
+	}
+
+	@Id
 	@Column(name="id")
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	@Id
 	private Long id;
 	
 	@Column(name="nombre")
+	@Nonnull
 	private String nombre;
 	
-	@Column(name="descripcion")
-	private String descripcion;
+	@Column(name="nif")
+	@Nonnull
+	private String nif;
 	
-	 @OneToMany(mappedBy = "usuarios")
-	private final Set<Usuario> usuarios = new HashSet<>();
+	@Column(name="email")
+	@Nonnull
+	private String email;
+
+	@OneToMany(mappedBy = "cliente")
+	private final Set<Factura> facturas = new HashSet<>();
+	
+	 @OneToOne
+	   private Usuario usuario;
 }

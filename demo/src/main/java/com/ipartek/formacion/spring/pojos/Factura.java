@@ -1,9 +1,10 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
 import java.time.LocalDate;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,15 +37,16 @@ public class Factura extends Pedido {
 	private String codigo;
 	
 	@Column(name="fecha")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
+	@Nonnull
 	private LocalDate fecha;
 
 	@ManyToOne
-    @JoinColumn(name="clientes_id")
+    @JoinColumn(name="clientes")
 	private Cliente cliente;
 	
 	@ManyToOne
-    @JoinColumn(name="empleados_id")
+    @JoinColumn(name="empleados")
 	private Empleado empleado;
 	
 	public Factura(Pedido pedido) {
@@ -54,9 +56,17 @@ public class Factura extends Pedido {
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
+
 	public static class Linea {
+
 		private Factura factura;
+		
+
 		private Producto producto;
+		
+
 		private Integer cantidad;
+		
+
 	}
 }

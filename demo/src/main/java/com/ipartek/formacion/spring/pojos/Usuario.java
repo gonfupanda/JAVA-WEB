@@ -1,7 +1,8 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,9 +28,11 @@ public class Usuario {
 	private Long id;
 	
 	@Column(name="email")
+	@Nonnull
 	private String email;
 	
 	@Column(name="password")
+	@Nonnull
 	private String password;
 	
 	@ManyToOne

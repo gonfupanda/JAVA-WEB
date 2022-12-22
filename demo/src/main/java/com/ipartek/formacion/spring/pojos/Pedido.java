@@ -1,16 +1,15 @@
-package com.ipartek.formacion.modelos;
+package com.ipartek.formacion.spring.pojos;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.ipartek.formacion.carrito.InicializarCarrito.Lista;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
-@Entity
+
 public class Pedido {
 
 	protected TreeMap<Long, Lista> lineas = new TreeMap<>();

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import com.ipartek.formacion.modelos.Pedido;
 import com.ipartek.formacion.modelos.Producto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
