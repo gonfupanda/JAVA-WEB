@@ -34,7 +34,6 @@ public class Empleado {
 	private String nif;
 	
 	@ManyToOne
-    @JoinColumn(name="jefe_id")
 	private Empleado jefe;
 	
 	public Empleado(Long id, String nombre, String nif, Empleado jefe) {

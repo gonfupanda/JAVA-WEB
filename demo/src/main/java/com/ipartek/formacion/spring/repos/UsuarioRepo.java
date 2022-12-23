@@ -1,14 +1,14 @@
 package com.ipartek.formacion.spring.repos;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.ipartek.formacion.spring.pojos.*;
 
-@Repository
-public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
+@RepositoryRestResource(path = "usuarios", collectionResourceRel = "usuarios")
+public interface UsuarioRepo extends PagingAndSortingRepository<Usuario, Long>, CrudRepository<Usuario,Long> {
 	
 
 }

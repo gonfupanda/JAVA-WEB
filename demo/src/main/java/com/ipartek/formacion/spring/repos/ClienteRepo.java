@@ -1,9 +1,13 @@
 package com.ipartek.formacion.spring.repos;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.ipartek.formacion.spring.pojos.Cliente;
 
-public interface ClienteRepo extends JpaRepository<Cliente, Long>{
+
+@RepositoryRestResource(path = "clientes", collectionResourceRel = "clientes")
+public interface ClienteRepo extends PagingAndSortingRepository<Cliente, Long>, CrudRepository<Cliente,Long>{
 
 }
