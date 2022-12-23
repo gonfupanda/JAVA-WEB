@@ -42,11 +42,11 @@ public class Factura extends Pedido {
 	private LocalDate fecha;
 
 	@ManyToOne
-    @JoinColumn(name="clientes")
+    @JoinColumn(name="clientes_id")
 	private Cliente cliente;
 	
 	@ManyToOne
-    @JoinColumn(name="empleados")
+    @JoinColumn(name="empleados_id")
 	private Empleado empleado;
 	
 	public Factura(Pedido pedido) {

@@ -17,5 +17,9 @@ public interface EmpleadoRepo extends PagingAndSortingRepository<Empleado, Long>
 	
 	@Query("from Empleado where nombre = :nombre")
 	public Empleado getByNombre(String nombre);
+	
+
+	
+	
 
 }
