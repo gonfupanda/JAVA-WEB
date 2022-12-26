@@ -1,6 +1,8 @@
 package com.ipartek.formacion.spring.pojos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -38,7 +40,7 @@ public class Rol {
 	private String descripcion;
 	
 	 @OneToMany(mappedBy = "rol")
-	private final Set<Usuario> usuarios = new HashSet<>();
+	private final List<Usuario> usuarios = new ArrayList<>();
 }
 
 

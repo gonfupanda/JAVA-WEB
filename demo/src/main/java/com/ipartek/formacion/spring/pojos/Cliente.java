@@ -1,6 +1,8 @@
 package com.ipartek.formacion.spring.pojos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -51,7 +53,7 @@ public class Cliente {
 	private String email;
 
 	@OneToMany(mappedBy = "cliente")
-	private final Set<Factura> facturas = new HashSet<>();
+	private final List<Factura> facturas = new ArrayList<>();
 	
 	 @OneToOne
 	   private Usuario usuario;
