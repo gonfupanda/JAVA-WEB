@@ -21,18 +21,31 @@ import lombok.NoArgsConstructor;
 @Table(name="resenas")
 public class Resena {
 	
+	@Id
+	@Column(name="id")
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	@Column(name="id")
-	@Id
 	private  Long id;
+	/*
+	@Column(name="curso_codigo")
+	@Nonnull
+	private  Long curso_codigo;
+	
+	@Column(name="alumno_codigo")
+	@Nonnull
+	private  Long alumno_codigo;*/
 	
 	@Column(name="texto")
 	@Nonnull
 	private  String texto;
 	
+	
 	@ManyToOne
-    @JoinColumn(name="libros_id")
-	private Libro libro;
+    @JoinColumn(name="curso_codigo")
+	private Curso cursoRes;
+	
+	@ManyToOne
+    @JoinColumn(name="alumno_codigo")
+	private Alumno alumno;
 
 }
