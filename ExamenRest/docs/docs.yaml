@@ -6,12 +6,12 @@ servers:
 - url: http://localhost:8080
   description: Generated server url
 paths:
-  /api/autores:
+  /api/alumnos:
     get:
       tags:
-      - autor-entity-controller
-      description: get-autor
-      operationId: getCollectionResource-autor-get_1
+      - alumno-entity-controller
+      description: get-alumno
+      operationId: getCollectionResource-alumno-get_1
       parameters:
       - name: page
         in: query
@@ -44,23 +44,23 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelAutor'
+                $ref: '#/components/schemas/PagedModelEntityModelAlumno'
             application/x-spring-data-compact+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelAutor'
+                $ref: '#/components/schemas/PagedModelEntityModelAlumno'
             text/uri-list:
               schema:
                 type: string
     post:
       tags:
-      - autor-entity-controller
-      description: create-autor
-      operationId: postCollectionResource-autor-post
+      - alumno-entity-controller
+      description: create-alumno
+      operationId: postCollectionResource-alumno-post
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AutorRequestBody'
+              $ref: '#/components/schemas/AlumnoRequestBody'
         required: true
       responses:
         "201":
@@ -68,32 +68,13 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
-  /api/autores/search/findByNombre:
+                $ref: '#/components/schemas/EntityModelAlumno'
+  /api/alumnos/{id}:
     get:
       tags:
-      - autor-search-controller
-      operationId: executeSearch-autor-get
-      parameters:
-      - name: nombre
-        in: query
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/EntityModelAutor'
-        "404":
-          description: Not Found
-  /api/autores/{id}:
-    get:
-      tags:
-      - autor-entity-controller
-      description: get-autor
-      operationId: getItemResource-autor-get
+      - alumno-entity-controller
+      description: get-alumno
+      operationId: getItemResource-alumno-get
       parameters:
       - name: id
         in: path
@@ -106,14 +87,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "404":
           description: Not Found
     put:
       tags:
-      - autor-entity-controller
-      description: update-autor
-      operationId: putItemResource-autor-put
+      - alumno-entity-controller
+      description: update-alumno
+      operationId: putItemResource-alumno-put
       parameters:
       - name: id
         in: path
@@ -124,7 +105,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AutorRequestBody'
+              $ref: '#/components/schemas/AlumnoRequestBody'
         required: true
       responses:
         "200":
@@ -132,20 +113,20 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "201":
           description: Created
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "204":
           description: No Content
     delete:
       tags:
-      - autor-entity-controller
-      description: delete-autor
-      operationId: deleteItemResource-autor-delete
+      - alumno-entity-controller
+      description: delete-alumno
+      operationId: deleteItemResource-alumno-delete
       parameters:
       - name: id
         in: path
@@ -159,9 +140,9 @@ paths:
           description: Not Found
     patch:
       tags:
-      - autor-entity-controller
-      description: patch-autor
-      operationId: patchItemResource-autor-patch
+      - alumno-entity-controller
+      description: patch-alumno
+      operationId: patchItemResource-alumno-patch
       parameters:
       - name: id
         in: path
@@ -172,7 +153,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AutorRequestBody'
+              $ref: '#/components/schemas/AlumnoRequestBody'
         required: true
       responses:
         "200":
@@ -180,15 +161,15 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "204":
           description: No Content
-  /api/autores/{id}/libros:
+  /api/alumnos/{id}/imparticiones:
     get:
       tags:
-      - autor-property-reference-controller
-      description: get-libro-by-autor-Id
-      operationId: followPropertyReference-autor-get_1
+      - alumno-property-reference-controller
+      description: get-imparticion-by-alumno-Id
+      operationId: followPropertyReference-alumno-get_1
       parameters:
       - name: id
         in: path
@@ -201,7 +182,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/CollectionModelLibro'
+                $ref: '#/components/schemas/CollectionModelImparticion'
             text/uri-list:
               schema:
                 type: string
@@ -209,9 +190,9 @@ paths:
           description: Not Found
     put:
       tags:
-      - autor-property-reference-controller
-      description: update-libro-by-autor-Id
-      operationId: createPropertyReference-autor-put
+      - alumno-property-reference-controller
+      description: update-imparticion-by-alumno-Id
+      operationId: createPropertyReference-alumno-put
       parameters:
       - name: id
         in: path
@@ -236,20 +217,20 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/CollectionModelLibro'
+                $ref: '#/components/schemas/CollectionModelImparticion'
         "201":
           description: Created
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/CollectionModelLibro'
+                $ref: '#/components/schemas/CollectionModelImparticion'
         "204":
           description: No Content
     delete:
       tags:
-      - autor-property-reference-controller
-      description: delete-libro-by-autor-Id
-      operationId: deletePropertyReference-autor-delete
+      - alumno-property-reference-controller
+      description: delete-imparticion-by-alumno-Id
+      operationId: deletePropertyReference-alumno-delete
       parameters:
       - name: id
         in: path
@@ -263,9 +244,9 @@ paths:
           description: Not Found
     patch:
       tags:
-      - autor-property-reference-controller
-      description: patch-libro-by-autor-Id
-      operationId: createPropertyReference-autor-patch
+      - alumno-property-reference-controller
+      description: patch-imparticion-by-alumno-Id
+      operationId: createPropertyReference-alumno-patch
       parameters:
       - name: id
         in: path
@@ -290,15 +271,15 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/CollectionModelLibro'
+                $ref: '#/components/schemas/CollectionModelImparticion'
         "204":
           description: No Content
-  /api/autores/{id}/libros/{propertyId}:
+  /api/alumnos/{id}/imparticiones/{propertyId}:
     get:
       tags:
-      - autor-property-reference-controller
-      description: get-libro-by-autor-Id
-      operationId: followPropertyReference-autor-get
+      - alumno-property-reference-controller
+      description: get-imparticion-by-alumno-Id
+      operationId: followPropertyReference-alumno-get
       parameters:
       - name: id
         in: path
@@ -316,14 +297,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/CollectionModelLibro'
+                $ref: '#/components/schemas/CollectionModelImparticion'
         "404":
           description: Not Found
     delete:
       tags:
-      - autor-property-reference-controller
-      description: delete-libro-by-autor-Id
-      operationId: deletePropertyReferenceId-autor-delete
+      - alumno-property-reference-controller
+      description: delete-imparticion-by-alumno-Id
+      operationId: deletePropertyReferenceId-alumno-delete
       parameters:
       - name: id
         in: path
@@ -340,12 +321,169 @@ paths:
           description: No Content
         "404":
           description: Not Found
-  /api/libros:
+  /api/alumnos/{id}/resenas:
     get:
       tags:
-      - libro-entity-controller
-      description: get-libro
-      operationId: getCollectionResource-libro-get_1
+      - alumno-property-reference-controller
+      description: get-resena-by-alumno-Id
+      operationId: followPropertyReference-alumno-get_2_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelResena'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - alumno-property-reference-controller
+      description: update-resena-by-alumno-Id
+      operationId: createPropertyReference-alumno-put_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelResena'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelResena'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - alumno-property-reference-controller
+      description: delete-resena-by-alumno-Id
+      operationId: deletePropertyReference-alumno-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - alumno-property-reference-controller
+      description: patch-resena-by-alumno-Id
+      operationId: createPropertyReference-alumno-patch_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelResena'
+        "204":
+          description: No Content
+  /api/alumnos/{id}/resenas/{propertyId}:
+    get:
+      tags:
+      - alumno-property-reference-controller
+      description: get-resena-by-alumno-Id
+      operationId: followPropertyReference-alumno-get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelResena'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - alumno-property-reference-controller
+      description: delete-resena-by-alumno-Id
+      operationId: deletePropertyReferenceId-alumno-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/clientes:
+    get:
+      tags:
+      - cliente-entity-controller
+      description: get-cliente
+      operationId: getCollectionResource-cliente-get_1
       parameters:
       - name: page
         in: query
@@ -378,23 +516,23 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelLibro'
+                $ref: '#/components/schemas/PagedModelEntityModelCliente'
             application/x-spring-data-compact+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelLibro'
+                $ref: '#/components/schemas/PagedModelEntityModelCliente'
             text/uri-list:
               schema:
                 type: string
     post:
       tags:
-      - libro-entity-controller
-      description: create-libro
-      operationId: postCollectionResource-libro-post
+      - cliente-entity-controller
+      description: create-cliente
+      operationId: postCollectionResource-cliente-post
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LibroRequestBody'
+              $ref: '#/components/schemas/ClienteRequestBody'
         required: true
       responses:
         "201":
@@ -402,32 +540,328 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
-  /api/libros/search/findByNombre:
+                $ref: '#/components/schemas/EntityModelCliente'
+  /api/clientes/{id}:
     get:
       tags:
-      - libro-search-controller
-      operationId: executeSearch-libro-get
+      - cliente-entity-controller
+      description: get-cliente
+      operationId: getItemResource-cliente-get
       parameters:
-      - name: nombre
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCliente'
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - cliente-entity-controller
+      description: update-cliente
+      operationId: putItemResource-cliente-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClienteRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCliente'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCliente'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - cliente-entity-controller
+      description: delete-cliente
+      operationId: deleteItemResource-cliente-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - cliente-entity-controller
+      description: patch-cliente
+      operationId: patchItemResource-cliente-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClienteRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCliente'
+        "204":
+          description: No Content
+  /api/clientes/{id}/cursosCli:
+    get:
+      tags:
+      - cliente-property-reference-controller
+      description: get-curso-by-cliente-Id
+      operationId: followPropertyReference-cliente-get_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - cliente-property-reference-controller
+      description: update-curso-by-cliente-Id
+      operationId: createPropertyReference-cliente-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - cliente-property-reference-controller
+      description: delete-curso-by-cliente-Id
+      operationId: deletePropertyReference-cliente-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - cliente-property-reference-controller
+      description: patch-curso-by-cliente-Id
+      operationId: createPropertyReference-cliente-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "204":
+          description: No Content
+  /api/clientes/{id}/cursosCli/{propertyId}:
+    get:
+      tags:
+      - cliente-property-reference-controller
+      description: get-curso-by-cliente-Id
+      operationId: followPropertyReference-cliente-get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - cliente-property-reference-controller
+      description: delete-curso-by-cliente-Id
+      operationId: deletePropertyReferenceId-cliente-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/cursos:
+    get:
+      tags:
+      - curso-entity-controller
+      description: get-curso
+      operationId: getCollectionResource-curso-get_1
+      parameters:
+      - name: page
         in: query
+        description: Zero-based page index (0..N)
+        required: false
         schema:
-          type: string
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
       responses:
         "200":
           description: OK
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
-        "404":
-          description: Not Found
-  /api/libros/{id}:
+                $ref: '#/components/schemas/PagedModelEntityModelCurso'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelEntityModelCurso'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+      - curso-entity-controller
+      description: create-curso
+      operationId: postCollectionResource-curso-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CursoRequestBody'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+  /api/cursos/{id}:
     get:
       tags:
-      - libro-entity-controller
-      description: get-libro
-      operationId: getItemResource-libro-get
+      - curso-entity-controller
+      description: get-curso
+      operationId: getItemResource-curso-get
       parameters:
       - name: id
         in: path
@@ -440,14 +874,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelCurso'
         "404":
           description: Not Found
     put:
       tags:
-      - libro-entity-controller
-      description: update-libro
-      operationId: putItemResource-libro-put
+      - curso-entity-controller
+      description: update-curso
+      operationId: putItemResource-curso-put
       parameters:
       - name: id
         in: path
@@ -458,7 +892,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LibroRequestBody'
+              $ref: '#/components/schemas/CursoRequestBody'
         required: true
       responses:
         "200":
@@ -466,20 +900,20 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelCurso'
         "201":
           description: Created
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelCurso'
         "204":
           description: No Content
     delete:
       tags:
-      - libro-entity-controller
-      description: delete-libro
-      operationId: deleteItemResource-libro-delete
+      - curso-entity-controller
+      description: delete-curso
+      operationId: deleteItemResource-curso-delete
       parameters:
       - name: id
         in: path
@@ -493,9 +927,9 @@ paths:
           description: Not Found
     patch:
       tags:
-      - libro-entity-controller
-      description: patch-libro
-      operationId: patchItemResource-libro-patch
+      - curso-entity-controller
+      description: patch-curso
+      operationId: patchItemResource-curso-patch
       parameters:
       - name: id
         in: path
@@ -506,7 +940,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LibroRequestBody'
+              $ref: '#/components/schemas/CursoRequestBody'
         required: true
       responses:
         "200":
@@ -514,15 +948,15 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelCurso'
         "204":
           description: No Content
-  /api/libros/{id}/autor:
+  /api/cursos/{id}/cursoCli:
     get:
       tags:
-      - libro-property-reference-controller
-      description: get-autor-by-libro-Id
-      operationId: followPropertyReference-libro-get_1
+      - curso-property-reference-controller
+      description: get-cliente-by-curso-Id
+      operationId: followPropertyReference-curso-get_1
       parameters:
       - name: id
         in: path
@@ -535,7 +969,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelCliente'
             text/uri-list:
               schema:
                 type: string
@@ -543,9 +977,9 @@ paths:
           description: Not Found
     put:
       tags:
-      - libro-property-reference-controller
-      description: update-autor-by-libro-Id
-      operationId: createPropertyReference-libro-put
+      - curso-property-reference-controller
+      description: update-cliente-by-curso-Id
+      operationId: createPropertyReference-curso-put
       parameters:
       - name: id
         in: path
@@ -570,20 +1004,20 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelCliente'
         "201":
           description: Created
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelCliente'
         "204":
           description: No Content
     delete:
       tags:
-      - libro-property-reference-controller
-      description: delete-autor-by-libro-Id
-      operationId: deletePropertyReference-libro-delete
+      - curso-property-reference-controller
+      description: delete-cliente-by-curso-Id
+      operationId: deletePropertyReference-curso-delete
       parameters:
       - name: id
         in: path
@@ -597,9 +1031,9 @@ paths:
           description: Not Found
     patch:
       tags:
-      - libro-property-reference-controller
-      description: patch-autor-by-libro-Id
-      operationId: createPropertyReference-libro-patch
+      - curso-property-reference-controller
+      description: patch-cliente-by-curso-Id
+      operationId: createPropertyReference-curso-patch
       parameters:
       - name: id
         in: path
@@ -624,15 +1058,15 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelCliente'
         "204":
           description: No Content
-  /api/libros/{id}/autor/{propertyId}:
+  /api/cursos/{id}/cursoCli/{propertyId}:
     get:
       tags:
-      - libro-property-reference-controller
-      description: get-autor-by-libro-Id
-      operationId: followPropertyReference-libro-get
+      - curso-property-reference-controller
+      description: get-cliente-by-curso-Id
+      operationId: followPropertyReference-curso-get
       parameters:
       - name: id
         in: path
@@ -650,14 +1084,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelCliente'
         "404":
           description: Not Found
     delete:
       tags:
-      - libro-property-reference-controller
-      description: delete-autor-by-libro-Id
-      operationId: deletePropertyReferenceId-libro-delete
+      - curso-property-reference-controller
+      description: delete-cliente-by-curso-Id
+      operationId: deletePropertyReferenceId-curso-delete
       parameters:
       - name: id
         in: path
@@ -674,12 +1108,326 @@ paths:
           description: No Content
         "404":
           description: Not Found
-  /api/libros/{id}/resenas:
+  /api/cursos/{id}/cursoProf:
     get:
       tags:
-      - libro-property-reference-controller
-      description: get-resena-by-libro-Id
-      operationId: followPropertyReference-libro-get_2_1
+      - curso-property-reference-controller
+      description: get-profesor-by-curso-Id
+      operationId: followPropertyReference-curso-get_2_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - curso-property-reference-controller
+      description: update-profesor-by-curso-Id
+      operationId: createPropertyReference-curso-put_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - curso-property-reference-controller
+      description: delete-profesor-by-curso-Id
+      operationId: deletePropertyReference-curso-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - curso-property-reference-controller
+      description: patch-profesor-by-curso-Id
+      operationId: createPropertyReference-curso-patch_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "204":
+          description: No Content
+  /api/cursos/{id}/cursoProf/{propertyId}:
+    get:
+      tags:
+      - curso-property-reference-controller
+      description: get-profesor-by-curso-Id
+      operationId: followPropertyReference-curso-get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - curso-property-reference-controller
+      description: delete-profesor-by-curso-Id
+      operationId: deletePropertyReferenceId-curso-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/cursos/{id}/imparticiones:
+    get:
+      tags:
+      - curso-property-reference-controller
+      description: get-imparticion-by-curso-Id
+      operationId: followPropertyReference-curso-get_3_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelImparticion'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - curso-property-reference-controller
+      description: update-imparticion-by-curso-Id
+      operationId: createPropertyReference-curso-put_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelImparticion'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelImparticion'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - curso-property-reference-controller
+      description: delete-imparticion-by-curso-Id
+      operationId: deletePropertyReference-curso-delete_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - curso-property-reference-controller
+      description: patch-imparticion-by-curso-Id
+      operationId: createPropertyReference-curso-patch_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelImparticion'
+        "204":
+          description: No Content
+  /api/cursos/{id}/imparticiones/{propertyId}:
+    get:
+      tags:
+      - curso-property-reference-controller
+      description: get-imparticion-by-curso-Id
+      operationId: followPropertyReference-curso-get_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelImparticion'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - curso-property-reference-controller
+      description: delete-imparticion-by-curso-Id
+      operationId: deletePropertyReferenceId-curso-delete_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/cursos/{id}/resenas:
+    get:
+      tags:
+      - curso-property-reference-controller
+      description: get-resena-by-curso-Id
+      operationId: followPropertyReference-curso-get_4_1
       parameters:
       - name: id
         in: path
@@ -700,9 +1448,9 @@ paths:
           description: Not Found
     put:
       tags:
-      - libro-property-reference-controller
-      description: update-resena-by-libro-Id
-      operationId: createPropertyReference-libro-put_1
+      - curso-property-reference-controller
+      description: update-resena-by-curso-Id
+      operationId: createPropertyReference-curso-put_3
       parameters:
       - name: id
         in: path
@@ -738,9 +1486,9 @@ paths:
           description: No Content
     delete:
       tags:
-      - libro-property-reference-controller
-      description: delete-resena-by-libro-Id
-      operationId: deletePropertyReference-libro-delete_1
+      - curso-property-reference-controller
+      description: delete-resena-by-curso-Id
+      operationId: deletePropertyReference-curso-delete_3
       parameters:
       - name: id
         in: path
@@ -754,9 +1502,9 @@ paths:
           description: Not Found
     patch:
       tags:
-      - libro-property-reference-controller
-      description: patch-resena-by-libro-Id
-      operationId: createPropertyReference-libro-patch_1
+      - curso-property-reference-controller
+      description: patch-resena-by-curso-Id
+      operationId: createPropertyReference-curso-patch_3
       parameters:
       - name: id
         in: path
@@ -784,12 +1532,12 @@ paths:
                 $ref: '#/components/schemas/CollectionModelResena'
         "204":
           description: No Content
-  /api/libros/{id}/resenas/{propertyId}:
+  /api/cursos/{id}/resenas/{propertyId}:
     get:
       tags:
-      - libro-property-reference-controller
-      description: get-resena-by-libro-Id
-      operationId: followPropertyReference-libro-get_2
+      - curso-property-reference-controller
+      description: get-resena-by-curso-Id
+      operationId: followPropertyReference-curso-get_4
       parameters:
       - name: id
         in: path
@@ -812,9 +1560,796 @@ paths:
           description: Not Found
     delete:
       tags:
-      - libro-property-reference-controller
-      description: delete-resena-by-libro-Id
-      operationId: deletePropertyReferenceId-libro-delete_1
+      - curso-property-reference-controller
+      description: delete-resena-by-curso-Id
+      operationId: deletePropertyReferenceId-curso-delete_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/imparticiones:
+    get:
+      tags:
+      - imparticion-entity-controller
+      description: get-imparticion
+      operationId: getCollectionResource-imparticion-get_1
+      parameters:
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelEntityModelImparticion'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelEntityModelImparticion'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+      - imparticion-entity-controller
+      description: create-imparticion
+      operationId: postCollectionResource-imparticion-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImparticionRequestBody'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelImparticion'
+  /api/imparticiones/{id}:
+    get:
+      tags:
+      - imparticion-entity-controller
+      description: get-imparticion
+      operationId: getItemResource-imparticion-get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelImparticion'
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - imparticion-entity-controller
+      description: update-imparticion
+      operationId: putItemResource-imparticion-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImparticionRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelImparticion'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelImparticion'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - imparticion-entity-controller
+      description: delete-imparticion
+      operationId: deleteItemResource-imparticion-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - imparticion-entity-controller
+      description: patch-imparticion
+      operationId: patchItemResource-imparticion-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImparticionRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelImparticion'
+        "204":
+          description: No Content
+  /api/imparticiones/{id}/alumnoImp:
+    get:
+      tags:
+      - imparticion-property-reference-controller
+      description: get-alumno-by-imparticion-Id
+      operationId: followPropertyReference-imparticion-get_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelAlumno'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - imparticion-property-reference-controller
+      description: update-alumno-by-imparticion-Id
+      operationId: createPropertyReference-imparticion-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelAlumno'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelAlumno'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - imparticion-property-reference-controller
+      description: delete-alumno-by-imparticion-Id
+      operationId: deletePropertyReference-imparticion-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - imparticion-property-reference-controller
+      description: patch-alumno-by-imparticion-Id
+      operationId: createPropertyReference-imparticion-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelAlumno'
+        "204":
+          description: No Content
+  /api/imparticiones/{id}/alumnoImp/{propertyId}:
+    get:
+      tags:
+      - imparticion-property-reference-controller
+      description: get-alumno-by-imparticion-Id
+      operationId: followPropertyReference-imparticion-get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelAlumno'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - imparticion-property-reference-controller
+      description: delete-alumno-by-imparticion-Id
+      operationId: deletePropertyReferenceId-imparticion-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/imparticiones/{id}/cursoImp:
+    get:
+      tags:
+      - imparticion-property-reference-controller
+      description: get-curso-by-imparticion-Id
+      operationId: followPropertyReference-imparticion-get_2_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - imparticion-property-reference-controller
+      description: update-curso-by-imparticion-Id
+      operationId: createPropertyReference-imparticion-put_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - imparticion-property-reference-controller
+      description: delete-curso-by-imparticion-Id
+      operationId: deletePropertyReference-imparticion-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - imparticion-property-reference-controller
+      description: patch-curso-by-imparticion-Id
+      operationId: createPropertyReference-imparticion-patch_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "204":
+          description: No Content
+  /api/imparticiones/{id}/cursoImp/{propertyId}:
+    get:
+      tags:
+      - imparticion-property-reference-controller
+      description: get-curso-by-imparticion-Id
+      operationId: followPropertyReference-imparticion-get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - imparticion-property-reference-controller
+      description: delete-curso-by-imparticion-Id
+      operationId: deletePropertyReferenceId-imparticion-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/profesores:
+    get:
+      tags:
+      - profesor-entity-controller
+      description: get-profesor
+      operationId: getCollectionResource-profesor-get_1
+      parameters:
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelEntityModelProfesor'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelEntityModelProfesor'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+      - profesor-entity-controller
+      description: create-profesor
+      operationId: postCollectionResource-profesor-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfesorRequestBody'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+  /api/profesores/{id}:
+    get:
+      tags:
+      - profesor-entity-controller
+      description: get-profesor
+      operationId: getItemResource-profesor-get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - profesor-entity-controller
+      description: update-profesor
+      operationId: putItemResource-profesor-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfesorRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - profesor-entity-controller
+      description: delete-profesor
+      operationId: deleteItemResource-profesor-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - profesor-entity-controller
+      description: patch-profesor
+      operationId: patchItemResource-profesor-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfesorRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        "204":
+          description: No Content
+  /api/profesores/{id}/cursoProf:
+    get:
+      tags:
+      - profesor-property-reference-controller
+      description: get-curso-by-profesor-Id
+      operationId: followPropertyReference-profesor-get_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - profesor-property-reference-controller
+      description: update-curso-by-profesor-Id
+      operationId: createPropertyReference-profesor-put
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - profesor-property-reference-controller
+      description: delete-curso-by-profesor-Id
+      operationId: deletePropertyReference-profesor-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - profesor-property-reference-controller
+      description: patch-curso-by-profesor-Id
+      operationId: createPropertyReference-profesor-patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "204":
+          description: No Content
+  /api/profesores/{id}/cursoProf/{propertyId}:
+    get:
+      tags:
+      - profesor-property-reference-controller
+      description: get-curso-by-profesor-Id
+      operationId: followPropertyReference-profesor-get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelCurso'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - profesor-property-reference-controller
+      description: delete-curso-by-profesor-Id
+      operationId: deletePropertyReferenceId-profesor-delete
       parameters:
       - name: id
         in: path
@@ -843,7 +2378,7 @@ paths:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/RepresentationModelObject'
-  /api/profile/autores:
+  /api/profile/alumnos:
     get:
       tags:
       - profile-controller
@@ -861,7 +2396,7 @@ paths:
             application/schema+json:
               schema:
                 $ref: '#/components/schemas/JsonSchema'
-  /api/profile/libros:
+  /api/profile/clientes:
     get:
       tags:
       - profile-controller
@@ -879,11 +2414,65 @@ paths:
             application/schema+json:
               schema:
                 $ref: '#/components/schemas/JsonSchema'
-  /api/profile/resenas:
+  /api/profile/cursos:
     get:
       tags:
       - profile-controller
       operationId: descriptor_1_1_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+  /api/profile/imparticiones:
+    get:
+      tags:
+      - profile-controller
+      operationId: descriptor_1_1_4
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+  /api/profile/profesores:
+    get:
+      tags:
+      - profile-controller
+      operationId: descriptor_1_1_5
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+  /api/profile/resenas:
+    get:
+      tags:
+      - profile-controller
+      operationId: descriptor_1_1_6
       responses:
         "200":
           description: OK
@@ -1055,11 +2644,11 @@ paths:
                 $ref: '#/components/schemas/EntityModelResena'
         "204":
           description: No Content
-  /api/resenas/{id}/libro:
+  /api/resenas/{id}/alumno:
     get:
       tags:
       - resena-property-reference-controller
-      description: get-libro-by-resena-Id
+      description: get-alumno-by-resena-Id
       operationId: followPropertyReference-resena-get_1
       parameters:
       - name: id
@@ -1073,7 +2662,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelAlumno'
             text/uri-list:
               schema:
                 type: string
@@ -1082,7 +2671,7 @@ paths:
     put:
       tags:
       - resena-property-reference-controller
-      description: update-libro-by-resena-Id
+      description: update-alumno-by-resena-Id
       operationId: createPropertyReference-resena-put
       parameters:
       - name: id
@@ -1108,19 +2697,19 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "201":
           description: Created
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "204":
           description: No Content
     delete:
       tags:
       - resena-property-reference-controller
-      description: delete-libro-by-resena-Id
+      description: delete-alumno-by-resena-Id
       operationId: deletePropertyReference-resena-delete
       parameters:
       - name: id
@@ -1136,7 +2725,7 @@ paths:
     patch:
       tags:
       - resena-property-reference-controller
-      description: patch-libro-by-resena-Id
+      description: patch-alumno-by-resena-Id
       operationId: createPropertyReference-resena-patch
       parameters:
       - name: id
@@ -1162,14 +2751,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "204":
           description: No Content
-  /api/resenas/{id}/libro/{propertyId}:
+  /api/resenas/{id}/alumno/{propertyId}:
     get:
       tags:
       - resena-property-reference-controller
-      description: get-libro-by-resena-Id
+      description: get-alumno-by-resena-Id
       operationId: followPropertyReference-resena-get
       parameters:
       - name: id
@@ -1188,14 +2777,171 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelAlumno'
         "404":
           description: Not Found
     delete:
       tags:
       - resena-property-reference-controller
-      description: delete-libro-by-resena-Id
+      description: delete-alumno-by-resena-Id
       operationId: deletePropertyReferenceId-resena-delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+  /api/resenas/{id}/cursoRes:
+    get:
+      tags:
+      - resena-property-reference-controller
+      description: get-curso-by-resena-Id
+      operationId: followPropertyReference-resena-get_2_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+            text/uri-list:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+    put:
+      tags:
+      - resena-property-reference-controller
+      description: update-curso-by-resena-Id
+      operationId: createPropertyReference-resena-put_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "201":
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "204":
+          description: No Content
+    delete:
+      tags:
+      - resena-property-reference-controller
+      description: delete-curso-by-resena-Id
+      operationId: deletePropertyReference-resena-delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+    patch:
+      tags:
+      - resena-property-reference-controller
+      description: patch-curso-by-resena-Id
+      operationId: createPropertyReference-resena-patch_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "204":
+          description: No Content
+  /api/resenas/{id}/cursoRes/{propertyId}:
+    get:
+      tags:
+      - resena-property-reference-controller
+      description: get-curso-by-resena-Id
+      operationId: followPropertyReference-resena-get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelCurso'
+        "404":
+          description: Not Found
+    delete:
+      tags:
+      - resena-property-reference-controller
+      description: delete-curso-by-resena-Id
+      operationId: deletePropertyReferenceId-resena-delete_1
       parameters:
       - name: id
         in: path
@@ -1302,11 +3048,30 @@ components:
           $ref: '#/components/schemas/Links'
         page:
           $ref: '#/components/schemas/PageMetadata'
-    EntityModelLibro:
+    EntityModelCurso:
       type: object
       properties:
         nombre:
           type: string
+        identificador:
+          type: string
+        finicio:
+          type: string
+          format: date-time
+        ffin:
+          type: string
+          format: date-time
+        nhoras:
+          type: integer
+          format: int32
+        temario:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        precio:
+          type: number
+          format: double
         _links:
           $ref: '#/components/schemas/Links'
     CollectionModelObject:
@@ -1321,51 +3086,120 @@ components:
                 type: object
         _links:
           $ref: '#/components/schemas/Links'
-    EntityModelAutor:
+    EntityModelAlumno:
       type: object
       properties:
         nombre:
           type: string
         apellidos:
           type: string
+        fnacimiento:
+          type: string
+          format: date-time
+        direccion:
+          type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        email:
+          type: string
+        dni:
+          type: string
+        nhermanos:
+          type: integer
+          format: int32
+        activo:
+          type: integer
+          format: int32
         _links:
           $ref: '#/components/schemas/Links'
-    PagedModelEntityModelAutor:
+    EntityModelImparticion:
+      type: object
+      properties:
+        fmatriculacion:
+          type: string
+          format: date-time
+        _links:
+          $ref: '#/components/schemas/Links'
+    PagedModelEntityModelImparticion:
       type: object
       properties:
         _embedded:
           type: object
           properties:
-            autores:
+            imparticiones:
               type: array
               items:
-                $ref: '#/components/schemas/EntityModelAutor'
+                $ref: '#/components/schemas/EntityModelImparticion'
         _links:
           $ref: '#/components/schemas/Links'
         page:
           $ref: '#/components/schemas/PageMetadata'
-    CollectionModelLibro:
+    EntityModelCliente:
       type: object
       properties:
-        _embedded:
-          type: object
-          properties:
-            libros:
-              type: array
-              items:
-                $ref: '#/components/schemas/LibroResponse'
+        nombre:
+          type: string
+        email:
+          type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        direccion:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        identificador:
+          type: string
         _links:
           $ref: '#/components/schemas/Links'
-    PagedModelEntityModelLibro:
+    PagedModelEntityModelCliente:
       type: object
       properties:
         _embedded:
           type: object
           properties:
-            libros:
+            clientes:
               type: array
               items:
-                $ref: '#/components/schemas/EntityModelLibro'
+                $ref: '#/components/schemas/EntityModelCliente'
+        _links:
+          $ref: '#/components/schemas/Links'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+    CollectionModelCurso:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            cursos:
+              type: array
+              items:
+                $ref: '#/components/schemas/CursoResponse'
+        _links:
+          $ref: '#/components/schemas/Links'
+    PagedModelEntityModelAlumno:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            alumnos:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelAlumno'
         _links:
           $ref: '#/components/schemas/Links'
         page:
@@ -1382,31 +3216,234 @@ components:
                 $ref: '#/components/schemas/ResenaResponse'
         _links:
           $ref: '#/components/schemas/Links'
-    AutorRequestBody:
+    CollectionModelImparticion:
       type: object
       properties:
-        id:
+        _embedded:
+          type: object
+          properties:
+            imparticiones:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImparticionResponse'
+        _links:
+          $ref: '#/components/schemas/Links'
+    EntityModelProfesor:
+      type: object
+      properties:
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        fnacimiento:
+          type: string
+          format: date-time
+        dni:
+          type: string
+        direccion:
+          type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        email:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        nss:
+          type: integer
+          format: int64
+        _links:
+          $ref: '#/components/schemas/Links'
+    PagedModelEntityModelProfesor:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            profesores:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelProfesor'
+        _links:
+          $ref: '#/components/schemas/Links'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+    PagedModelEntityModelCurso:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            cursos:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelCurso'
+        _links:
+          $ref: '#/components/schemas/Links'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+    AlumnoRequestBody:
+      type: object
+      properties:
+        codigo:
           type: integer
           format: int64
         nombre:
           type: string
         apellidos:
           type: string
-        libros:
+        fnacimiento:
+          type: string
+          format: date-time
+        direccion:
+          type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        email:
+          type: string
+        dni:
+          type: string
+        nhermanos:
+          type: integer
+          format: int32
+        activo:
+          type: integer
+          format: int32
+        imparticiones:
           type: array
           items:
             type: string
-    LibroRequestBody:
+        resenas:
+          type: array
+          items:
+            type: string
+    ClienteRequestBody:
       type: object
       properties:
-        id:
+        codigo:
           type: integer
           format: int64
         nombre:
           type: string
-        autor:
+        email:
           type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        direccion:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        identificador:
+          type: string
+        cursosCli:
+          type: array
+          items:
+            type: string
+    CursoRequestBody:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        identificador:
+          type: string
+        finicio:
+          type: string
+          format: date-time
+        ffin:
+          type: string
+          format: date-time
+        nhoras:
+          type: integer
+          format: int32
+        temario:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        precio:
+          type: number
+          format: double
+        imparticiones:
+          type: array
+          items:
+            type: string
         resenas:
+          type: array
+          items:
+            type: string
+        cursoCli:
+          type: string
+        cursoProf:
+          type: string
+    ImparticionRequestBody:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        fmatriculacion:
+          type: string
+          format: date-time
+        cursoImp:
+          type: string
+        alumnoImp:
+          type: string
+    ProfesorRequestBody:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        fnacimiento:
+          type: string
+          format: date-time
+        dni:
+          type: string
+        direccion:
+          type: string
+        poblacion:
+          type: string
+        codigopostal:
+          type: integer
+          format: int32
+        telefono:
+          type: integer
+          format: int32
+        email:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        nss:
+          type: integer
+          format: int64
+        cursoProf:
           type: array
           items:
             type: string
@@ -1418,13 +3455,40 @@ components:
           format: int64
         texto:
           type: string
-        libro:
+        cursoRes:
           type: string
-    LibroResponse:
+        alumno:
+          type: string
+    CursoResponse:
       type: object
       properties:
         nombre:
           type: string
+        identificador:
+          type: string
+        finicio:
+          type: string
+          format: date-time
+        ffin:
+          type: string
+          format: date-time
+        nhoras:
+          type: integer
+          format: int32
+        temario:
+          type: string
+        activo:
+          type: integer
+          format: int32
+        precio:
+          type: number
+          format: double
+    ImparticionResponse:
+      type: object
+      properties:
+        fmatriculacion:
+          type: string
+          format: date-time
     ResenaResponse:
       type: object
       properties:
