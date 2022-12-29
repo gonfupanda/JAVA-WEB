@@ -56,14 +56,16 @@ public class Factura extends Pedido {
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-
+	@Entity
+	@Table(name="facturas_has_productos")
 	public static class Linea {
 
+		@Id
+		@ManyToOne
 		private Factura factura;
-		
-
+		@Id
+		@ManyToOne
 		private Producto producto;
-		
 
 		private Integer cantidad;
 		
