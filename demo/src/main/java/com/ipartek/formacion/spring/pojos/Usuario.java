@@ -39,7 +39,8 @@ public class Usuario {
     @JoinColumn(name="roles_id")
 	private Rol rol;
 	
-	@OneToOne(mappedBy="usuario")
+	@ManyToOne
+    @JoinColumn(name="clientes_id")
 	private Cliente cliente;
 	
 	public Usuario(Long id, String email, String password) {

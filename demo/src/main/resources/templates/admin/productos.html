@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::table})}" lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Productos</title>
+	<title>Productos</title>
 </head>
 <body>
+	<table class="table table-sm table-hover table-bordered table-striped">
+		<caption>Productos</caption>
+		<thead class="table-dark">
+			<tr>
+				<th class="text-end" scope="col">Id</th>
+				<th scope="col">Imagen</th>
+				<th scope="col">Nombre</th>
+				<th class="text-end" scope="col">Precio</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p: ${productos}">
+				<th class="text-end" scope="row" th:text="${p.id}">1</th>
+				<td><img height="50" th:src="@{/imgs/{imagen}.jpg(imagen=${p.id})}" src="#" alt="">
+				</td>
+				<td th:text="${p.nombre}">Producto1</td>
+				<td class="text-end" th:text="${#numbers.formatCurrency(p.precio)}">123,12€</td>
+				<td th:text="${p.categoria.nombre}">Categoria2</td>
+				<td><a class="btn btn-sm btn-primary" th:href="'producto/' + ${p.id}" href="#">Editar</a> <a
+					class="btn btn-sm btn-danger" th:href="'producto/' + ${p.id} + '/borrar'" href="#">Borrar</a></td>
+			</tr>
+		</tbody>
+		<tfoot class="table-dark">
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><a class="btn btn-primary btn-sm" th:href="producto" href="#">Añadir</a></td>
 
-<table>
-	<caption>Productos</caption>
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Imagen</th>
-			<th scope="col">Nombre</th>
-			<th scope="col">Precio</th>
-			<th scope="col">Categoria</th>
-			<th scope="col">Opciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="p: ${productos}">
-			<th scope="row" th:text="${p.id}">1</th>
-			<td>
-				<img th:src="'imgs/' + ${p.id} + '.jpg'" src="#" alt="">
-			</td>
-			<td th:text="${p.nombre}">Producto1</td>
-			<td th:text="${p.precio}">123,12€</td>
-			<td th:text="${p.categoria.nombre}">Categoria2</td>
-			<td>
-				<a href="#">Editar</a>
-				<a href="#">Borrar</a>
-			</td>
-		</tr>
-	</tbody>
-</table>
-
+			</tr>
+		</tfoot>
+	</table>
 </body>
 </html>

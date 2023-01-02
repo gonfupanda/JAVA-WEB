@@ -20,6 +20,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,17 +40,21 @@ public class Producto {
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
 	@Id
+	@Min(value = 0)
 	private Long id;
 	
 	@Column(name="nombre")
+	@NotBlank
 	@Nonnull
 	private String nombre;
 	
 	@Column(name="precio")
 	@Nonnull
+	@Min(value = 0)
 	private BigDecimal precio;
 	
 	@Column(name="descripcion")
+	@Size(max = 5000)
 	@Nonnull
 	private String descripcion;
 
