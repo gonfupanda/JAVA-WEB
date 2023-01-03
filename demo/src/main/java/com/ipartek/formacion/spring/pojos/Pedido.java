@@ -4,12 +4,11 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-
+@ToString
+@EqualsAndHashCode
 public class Pedido {
 
 	protected TreeMap<Long, Lista> lineas = new TreeMap<>();
