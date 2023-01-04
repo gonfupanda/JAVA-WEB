@@ -24,17 +24,17 @@
 			</thead>
 			<tbody>
 				<tr th:each="linea: ${carrito.lineas}">
-					<th class="text-end" scope="row" th:text="${linea.producto.id}">1</th>
+					<th class="text-end" scope="row" th:text="${linea.prod.id}">1</th>
 					<td><img height="50"
-						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.producto.id})}" src="#" alt="">
+						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.prod.id})}" src="#" alt="">
 					</td>
-					<td th:text="${linea.producto.nombre}">Producto1</td>
-					<td class="text-end" th:text="${#numbers.formatCurrency(linea.producto.precio)}">123,12€</td>
+					<td th:text="${linea.prod.nombre}">Producto1</td>
+					<td class="text-end" th:text="${#numbers.formatCurrency(linea.prod.precio)}">123,12€</td>
 					<td th:text="${linea.cantidad}">6</td>
 					<td><a class="btn btn-sm btn-primary"
-						th:href="'producto/' + ${linea.producto.id}" href="#">Editar</a> <a
+						th:href="'producto/' + ${linea.prod.id}" href="#">Editar</a> <a
 						class="btn btn-sm btn-danger"
-						th:href="'producto/' + ${linea.producto.id} + '/borrar'" href="#">Borrar</a></td>
+						th:href="'producto/' + ${linea.prod.id} + '/borrar'" href="#">Borrar</a></td>
 				</tr>
 			</tbody>
 			<tfoot class="table-dark">

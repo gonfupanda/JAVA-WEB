@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::form})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Principal</title>
+</head>
+<body>
+	<form th:action="@{/login}" method="post">
+		<div class="row">
+			<div class="offset-sm-2 col-sm-8 offset-md-3 col-md-6">
+				<div class="row mb-3">
+					<label class="col-sm-3 form-label" for="usuario">Usuario</label>
+					<div class="col-sm-9">
+						<input class="form-control" id="usuario" name="username"
+							placeholder="Usuario">
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label class="col-sm-3 form-label" for="password">Contraseña</label>
+					<div class="col-sm-9">
+						<input class="form-control" name="password" type="password"
+							id="password" placeholder="Contraseña">
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="offset-sm-3 col-sm-9">
+						<button class="btn btn-primary">Aceptar</button>
+						<span class="text-danger" th:if="${param.error}">Usuario o
+							contraseña incorrectas</span> <span class="text-danger"
+							th:if="${param.logout}">Has cerrado la sesión</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>
