@@ -3,23 +3,33 @@
 	lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<title>Carrito</title>
+<title>Confirmacion</title>
 </head>
 <body>
 	<main>
+		<div class="d-flex">
+			<div>Datos de la tienda</div>
+			<div class="ms-auto" th:object="${usuario.cliente}">
+				<p>Datos del cliente</p>
+				<p th:text="*{nombre}">Nombre</p>
+				<p th:text="*{nif}">NIF</p>
+				<p th:text="*{email}">Email</p>
+			</div>
+		</div>
 		<!--/*-->
+		<pre th:text="${usuario}">Datos de cliente</pre>
 		<pre th:text="'^' + ${carrito} + '$'"></pre>
 		<!--*/-->
-		<table class="table table-sm table-hover table-bordered table-striped">
+		<table class="table table-sm table-bordered">
 			<caption>Carrito</caption>
-			<thead class="table-dark">
+			<thead>
 				<tr>
 					<th class="text-end" scope="col">Id</th>
 					<th scope="col">Imagen</th>
 					<th scope="col">Nombre</th>
 					<th class="text-end" scope="col">Precio</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Opciones</th>
+					<th class="text-end" scope="col">Cantidad</th>
+					<th class="text-end" scope="col">Total</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,29 +40,21 @@
 					</td>
 					<td th:text="${linea.prod.nombre}">Producto1</td>
 					<td class="text-end" th:text="${#numbers.formatCurrency(linea.prod.precio)}">123,12€</td>
-					<td th:text="${linea.cantidad}">6</td>
-					<td><a class="btn btn-sm btn-primary"
-						th:href="'producto/' + ${linea.prod.id}" href="#">Editar</a> <a
-						class="btn btn-sm btn-danger"
-						th:href="'producto/' + ${linea.prod.id} + '/borrar'" href="#">Borrar</a></td>
+					<td class="text-end" th:text="${linea.cantidad}">6</td>
+					<td class="text-end" th:text="${#numbers.formatCurrency(linea.total)}">1234€</td>
 				</tr>
 			</tbody>
-			<tfoot class="table-dark">
+			<tfoot>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><a class="btn btn-primary btn-sm" th:href="@{/}"
-						href="#">Añadir</a></td>
-
+					<th scope="col" class="text-end" th:text="${#numbers.formatCurrency(carrito.total)}">12341234€</th>
 				</tr>
 			</tfoot>
 		</table>
-		<p>
-			<a class="btn btn-primary btn-sm" th:href="@{/confirmacion}" href="#">Confirmación</a>
-		</p>
 	</main>
 </body>
 </html>

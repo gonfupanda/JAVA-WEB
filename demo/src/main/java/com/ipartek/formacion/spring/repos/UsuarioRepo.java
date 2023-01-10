@@ -10,5 +10,5 @@ import com.ipartek.formacion.spring.pojos.*;
 @RepositoryRestResource(path = "usuarios", collectionResourceRel = "usuarios")
 public interface UsuarioRepo extends PagingAndSortingRepository<Usuario, Long>, CrudRepository<Usuario,Long> {
 	
-
+	Usuario findByEmail(String email);
 }

@@ -9,6 +9,6 @@ import com.ipartek.formacion.spring.pojos.Rol;
 
 @RepositoryRestResource(path = "roles", collectionResourceRel = "roles")
 public interface RolRepo extends PagingAndSortingRepository<Rol, Long>, CrudRepository<Rol,Long>{
-	
+	Rol findByNombre(String nombre);
 
 }

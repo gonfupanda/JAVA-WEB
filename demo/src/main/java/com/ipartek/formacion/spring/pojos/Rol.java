@@ -1,9 +1,7 @@
 package com.ipartek.formacion.spring.pojos;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -16,7 +14,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -40,6 +40,8 @@ public class Rol {
 	private String descripcion;
 	
 	 @OneToMany(mappedBy = "rol")
+	 @ToString.Exclude
+	 @EqualsAndHashCode.Exclude
 	private final List<Usuario> usuarios = new ArrayList<>();
 }
 
