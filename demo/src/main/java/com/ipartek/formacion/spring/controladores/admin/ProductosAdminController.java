@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +14,20 @@ import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ipartek.formacion.spring.pojos.Producto;
+import com.ipartek.formacion.spring.pojos.Usuario;
 import com.ipartek.formacion.spring.service.CategoriaService;
 import com.ipartek.formacion.spring.service.ProductoService;
+import com.ipartek.formacion.spring.service.UsuarioService;
 
 import jakarta.validation.Valid;
 import lombok.extern.java.Log;
@@ -38,6 +43,20 @@ public class ProductosAdminController {
 
 	@Autowired
 	private CategoriaService categoriaService;
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@ModelAttribute("usuario")
+	public Usuario getUsuario(Principal principal) {
+		if (principal == null) {
+			return null;
+		}
+
+		String email = principal.getName();
+
+		return usuarioService.buscarPorEmail(email);
+	}
+	
 
 	@GetMapping("/productos")
 	public String mostrarListado(Model modelo) {
@@ -46,6 +65,11 @@ public class ProductosAdminController {
 		modelo.addAttribute("productos", productos);
 
 		return "admin/productos";
+	}
+	
+	@GetMapping({"*"})
+	public void sacarAtributoUsu(Model modelo,@SessionAttribute Usuario usuario) {
+		modelo.addAttribute("usuario", usuario);
 	}
 
 	@GetMapping({ "/producto", "/producto/{id}" })

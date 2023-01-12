@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -126,7 +128,7 @@ public class IndexController {
 	}
 
 	@GetMapping("/confirmacion")
-	public String confirmacion(@SessionAttribute Usuario usuario, Model modelo) {
+	public String confirmacion(@ModelAttribute Usuario usuario) {
 		if (usuario == null || usuario.getCliente() == null) {
 			return "redirect:/alta-cliente";
 		}
@@ -140,7 +142,7 @@ public class IndexController {
 	}
 
 	@PostMapping("/alta-cliente")
-	public String altaClientePost(@SessionAttribute Usuario usuario, @Valid Cliente cliente,
+	public String altaClientePost(@ModelAttribute Usuario usuario, @Valid Cliente cliente,
 			BindingResult bindingResult, Model modelo) {
 		if (bindingResult.hasErrors()) {
 			return "alta-cliente";
@@ -155,5 +157,12 @@ public class IndexController {
 	public String abandonarCarrito(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
+	}
+	
+	@GetMapping("/quitar-del-carrito/{id}")
+	public String quitarDelCarrito(@PathVariable Long id, @SessionAttribute Pedido carrito) {
+		carrito.getLineasPorId().remove(id);
+
+		return "redirect:/carrito";
 	}
 }

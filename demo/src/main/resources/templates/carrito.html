@@ -26,16 +26,28 @@
 				<tr th:each="linea: ${carrito.lineas}">
 					<th class="text-end" scope="row" th:text="${linea.prod.id}">1</th>
 					<td><img height="50"
-						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.prod.id})}" src="#" alt="">
-					</td>
+						th:src="@{/imgs/{imagen}.jpg(imagen=${linea.prod.id})}" src="#"
+						alt=""></td>
 					<td th:text="${linea.prod.nombre}">Producto1</td>
-					<td class="text-end" th:text="${#numbers.formatCurrency(linea.prod.precio)}">123,12€</td>
-					<td th:text="${linea.cantidad}">6</td>
-					<td><a class="btn btn-sm btn-primary"
-						th:href="'producto/' + ${linea.prod.id}" href="#">Editar</a> <a
-						class="btn btn-sm btn-danger"
-						th:href="'producto/' + ${linea.prod.id} + '/borrar'" href="#">Borrar</a></td>
-				</tr>
+					<td class="text-end"
+						th:text="${#numbers.formatCurrency(linea.prod.precio)}">123,12€</td>
+					<td>
+						<form th:action="@{/carrito}" method="post"
+							class="input-group mb-3">
+							<button class="menos btn btn-sm btn-outline-secondary"
+								type="button">-</button>
+							<input type="hidden" name="id" value="0"
+								th:value="${linea.prod.id}"> <input type="text"
+								name="cantidad" th:value="${linea.cantidad}" value="0"
+								class="text-center form-control-sm" placeholder="Cantidad">
+							<button class="mas btn btn-sm btn-outline-secondary"
+								type="button">+</button>
+							<button class="btn btn-sm btn-primary">Aceptar</button>
+						</form>
+					</td>
+					<td><a class="btn btn-sm btn-danger"
+						th:href="'quitar-del-carrito/' + ${linea.prod.id}" href="#">Quitar
+							del carrito</a></td>
 			</tbody>
 			<tfoot class="table-dark">
 				<tr>
@@ -44,8 +56,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><a class="btn btn-primary btn-sm" th:href="@{/}"
-						href="#">Añadir</a></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/}" href="#">Añadir</a></td>
 
 				</tr>
 			</tfoot>
@@ -53,6 +64,7 @@
 		<p>
 			<a class="btn btn-primary btn-sm" th:href="@{/confirmacion}" href="#">Confirmación</a>
 		</p>
+		<script th:src="@{/js/cantidades.js}" src=""></script>
 	</main>
 </body>
 </html>
