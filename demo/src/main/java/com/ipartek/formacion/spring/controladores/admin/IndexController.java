@@ -18,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -26,9 +25,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.ipartek.formacion.spring.pojos.Cliente;
+import com.ipartek.formacion.spring.pojos.Factura;
 import com.ipartek.formacion.spring.pojos.Pedido;
 import com.ipartek.formacion.spring.pojos.Usuario;
 import com.ipartek.formacion.spring.service.CarritoService;
+import com.ipartek.formacion.spring.service.FacturaService;
 import com.ipartek.formacion.spring.service.ProductoService;
 import com.ipartek.formacion.spring.service.UsuarioService;
 
@@ -39,8 +40,8 @@ import lombok.extern.java.Log;
 @Log
 @Controller
 @RequestMapping("/")
-@SessionAttributes({ "carrito", "usuario" })
-public class IndexController {
+@SessionAttributes({ "carrito"})
+public class IndexController  extends GlobalController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -52,25 +53,15 @@ public class IndexController {
 		return new Pedido();
 	}
 
-	@ModelAttribute("usuario")
-	public Usuario getUsuario(Principal principal) {
-		if (principal == null) {
-			return null;
-		}
-
-		String email = principal.getName();
-
-		return usuarioService.buscarPorEmail(email);
-	}
 
 	@Autowired
 	private ProductoService productoService;
 
 	@Autowired
 	private CarritoService carritoService;
-
+	
 	@Autowired
-	private UsuarioService usuarioService;
+	private FacturaService facturaService;
 
 	@GetMapping
 	public String index(Model modelo) {
@@ -164,5 +155,15 @@ public class IndexController {
 		carrito.getLineasPorId().remove(id);
 
 		return "redirect:/carrito";
+	}
+	
+	@GetMapping("/factura")
+	public String factura(@SessionAttribute Pedido carrito, @ModelAttribute Usuario usuario, Model modelo) {
+		Factura factura = facturaService.obtenerFactura(carrito, usuario.getCliente());
+		facturaService.guardarFactura(factura);
+
+		modelo.addAttribute(factura);
+
+		return "factura";
 	}
 }

@@ -35,7 +35,7 @@ import lombok.extern.java.Log;
 @Log
 @Controller
 @RequestMapping("/admin")
-public class ProductosAdminController {
+public class ProductosAdminController  extends GlobalController {
 	
 	public static final String UPLOAD_DIRECTORY = getResourceAsFile("static/imgs").getAbsolutePath(); // 
 	@Autowired
@@ -43,19 +43,6 @@ public class ProductosAdminController {
 
 	@Autowired
 	private CategoriaService categoriaService;
-	@Autowired
-	private UsuarioService usuarioService;
-	
-	@ModelAttribute("usuario")
-	public Usuario getUsuario(Principal principal) {
-		if (principal == null) {
-			return null;
-		}
-
-		String email = principal.getName();
-
-		return usuarioService.buscarPorEmail(email);
-	}
 	
 
 	@GetMapping("/productos")
