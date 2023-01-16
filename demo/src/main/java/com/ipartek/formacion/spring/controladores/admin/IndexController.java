@@ -1,8 +1,6 @@
 package com.ipartek.formacion.spring.controladores.admin;
 
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,9 +27,9 @@ import com.ipartek.formacion.spring.pojos.Factura;
 import com.ipartek.formacion.spring.pojos.Pedido;
 import com.ipartek.formacion.spring.pojos.Usuario;
 import com.ipartek.formacion.spring.service.CarritoService;
+import com.ipartek.formacion.spring.service.ClienteService;
 import com.ipartek.formacion.spring.service.FacturaService;
 import com.ipartek.formacion.spring.service.ProductoService;
-import com.ipartek.formacion.spring.service.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -56,6 +54,9 @@ public class IndexController  extends GlobalController {
 
 	@Autowired
 	private ProductoService productoService;
+	
+	@Autowired
+	private ClienteService clienteService;
 
 	@Autowired
 	private CarritoService carritoService;
@@ -70,13 +71,15 @@ public class IndexController  extends GlobalController {
 	}
 
 	@GetMapping("/login")
-	public String login(Usuario usuario) {
+	public String login(Usuario usuario, Model modelo) {
+		modelo.addAttribute("clientes",clienteService.obtenerTodos());
 		return "login";
 	}
 
 	@PostMapping("/registro")
 	public String registro(HttpSession session, @ModelAttribute("usuarioForm") @Valid Usuario usuario, BindingResult bindingResult) {
 		log.info(usuario.toString());
+		
 
 		if (bindingResult.hasErrors()) {
 			return "login";

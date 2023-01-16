@@ -8,6 +8,7 @@ import com.ipartek.formacion.spring.pojos.Cliente;
 
 
 @RepositoryRestResource(path = "clientes", collectionResourceRel = "clientes")
-public interface ClienteRepo extends PagingAndSortingRepository<Cliente, Long>, CrudRepository<Cliente,Long>{
+public interface ClienteRepo extends  CrudRepository<Cliente,Long>{
+	
 
 }
