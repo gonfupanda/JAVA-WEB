@@ -44,21 +44,34 @@ public class IndexController {
 		return "libro";
 	}
 
-	@PostMapping({ "/libro/{nombre}" })
+	@PostMapping({ "/buscar" })
 	public String buscarLibroNombre(@PathVariable(required = false) String nombre, Model modelo, Libro libro) {
-		String nom = libroService.findByNombre(nombre).getNombre();
-		String isbn = libroService.findByNombre(nombre).getIsbn();
+		String nom=null;
+		if(libroService.findByNombre(libro.getNombre())!=null) {
+			nom = libroService.findByNombre(libro.getNombre()).getNombre();
+		}
+		
+		//String isbn = libroService.findByIsbn(libro.getNombre()).getIsbn();
 
 		log.info("entro en buscarLibros");
-		if (nom != null && isbn != null) {
-			modelo.addAttribute("libro", libroService.findByNombre(nombre));
+		if (nom != null) {
+			modelo.addAttribute("libro", libroService.findByNombre(nom));
 			return "libro";
-		} else {
-			modelo.addAttribute("mensaje", "No se ha encontrado el libro con ese nombre");
-			modelo.addAttribute("nivel", "danger");
-
-			return "buscar";
+		}  else {
+			String isbn=null;
+			if(libroService.findByIsbn(libro.getNombre())!=null) {
+				isbn = libroService.findByNombre(libro.getNombre()).getNombre();
+			}
+			if (isbn != null) {
+				modelo.addAttribute("libro", libroService.findByIsbn(isbn));
+				return "libro";
+			} else {
+				modelo.addAttribute("mensaje", "No se ha encontrado el libro con ese nombre o ISBN");
+				modelo.addAttribute("nivel", "danger");
+			}
 		}
-	}
+		
 
+		return "buscar";
+	}
 }
