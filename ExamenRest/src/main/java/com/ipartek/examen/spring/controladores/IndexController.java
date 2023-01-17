@@ -50,17 +50,15 @@ public class IndexController {
 		if(libroService.findByNombre(libro.getNombre())!=null) {
 			nom = libroService.findByNombre(libro.getNombre()).getNombre();
 		}
-		
-		//String isbn = libroService.findByIsbn(libro.getNombre()).getIsbn();
 
-		log.info("entro en buscarLibros");
+
 		if (nom != null) {
 			modelo.addAttribute("libro", libroService.findByNombre(nom));
 			return "libro";
 		}  else {
 			String isbn=null;
 			if(libroService.findByIsbn(libro.getNombre())!=null) {
-				isbn = libroService.findByNombre(libro.getNombre()).getNombre();
+				isbn = libroService.findByIsbn(libro.getNombre()).getIsbn();
 			}
 			if (isbn != null) {
 				modelo.addAttribute("libro", libroService.findByIsbn(isbn));
