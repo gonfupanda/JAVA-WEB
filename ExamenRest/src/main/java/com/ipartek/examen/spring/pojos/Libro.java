@@ -1,16 +1,17 @@
 package com.ipartek.examen.spring.pojos;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,24 +20,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="imparticion")
-public class Imparticion {
-	@Id
-	@Column(name="codigo")
+@Table(name="libros")
+public class Libro {
+	
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
-	private  Long codigo;
+	@Column(name="id")
+	@Id
+	private Long id;
 	
-	@Column(name="fmatriculacion")
-	private  Date fmatriculacion;
+	@Column(name="nombre")
+	@Nonnull
+	private String nombre;
 	
+	@Column(name="isbn")
+	@Nonnull
+	private String isbn;
 	
-	@ManyToOne
-    @JoinColumn(name="curso_codigo")
-	private Curso cursoImp;
-	
-	@ManyToOne
-    @JoinColumn(name="alumno_codigo")
-	private Alumno alumnoImp;
+	@Column(name="precio")
+	@Nonnull
+	@Min(value = 0)
+	private BigDecimal precio;
 
 }
