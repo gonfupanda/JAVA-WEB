@@ -15,16 +15,7 @@
 				<th scope="col">Precio</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr th:each="p: ${libros}">
-				<th class="text-end" scope="row" th:text="${p.id}">1</th>
-				<td th:text="${p.nombre}">Producto1</td>
-				<td th:text="${p.isbn}">isbn1</td>
-				<td class="text-end" th:text="${#numbers.formatCurrency(p.precio)}">123,12€</td>
-				<td><a class="btn btn-sm btn-primary" th:href="'libro/' + ${p.id}" href="#">VER</a> </td>
-				
-			</tr>
-		</tbody>
+
 		<tfoot class="table-dark">
 			<tr>
 				<td></td>

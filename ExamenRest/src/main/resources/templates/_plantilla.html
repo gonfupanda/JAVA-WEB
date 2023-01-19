@@ -25,10 +25,25 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" th:href="@{/}"
 						href="#">Principal</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false"
+						sec:authorize="hasRole('ROLE_ADMIN')"> Administración </a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" th:href="@{/admin/usuarios}"
+								href="#">Usuarios</a></li>
+						</ul></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" th:href="@{/buscar}"
-						href="#">Buscar</a></li>
+					<li class="nav-item navbar-text" sec:authorize="isAuthenticated()"
+						th:text="${usuarioLogin.email}">Usuario</li>
+					<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+						class="nav-link" th:href="@{/login}" href="#">Login</a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<form th:action="@{/logout}" method="post">
+							<input class="btn btn-link nav-link" type="submit" value="Logout" />
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>

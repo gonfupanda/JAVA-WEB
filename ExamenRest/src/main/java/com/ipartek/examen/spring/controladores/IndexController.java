@@ -1,75 +1,90 @@
 package com.ipartek.examen.spring.controladores;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ipartek.examen.spring.pojos.Libro;
-import com.ipartek.examen.spring.rest.LibroService;
+import com.ipartek.examen.spring.pojos.Usuario;
+import com.ipartek.examen.spring.rest.UsuarioService;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.java.Log;
+
+
+
+
 
 @Log
 @Controller
 @RequestMapping("/")
-public class IndexController {
-
+public class IndexController extends GlobalController{
+	
+	/////////////////////////   ZONA DE AUTENTICACION + ENCRIPTACION
 	@Autowired
-	private LibroService libroService;
-
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private AuthenticationConfiguration authenticationConfiguration;
+	
+	////////////////////////////////
+	
 	@GetMapping
 	public String index(Model modelo) {
-
-		Iterable<Libro> libros = libroService.obtenerTodos();
-		modelo.addAttribute("libros", libros);
-
+		
 		return "index";
 	}
-
-	@GetMapping({ "/buscar" })
-	public String buscar() {
-		return "buscar";
+	
+	@GetMapping("/login")
+	public String login(Usuario usuario, Model modelo) {
+		modelo.addAttribute("usuarios",usuarioService.obtenerTodos());
+		return "login";
 	}
-
-	@GetMapping({ "/libro", "/libro/{id}" })
-	public String mostrarFormularioProducto(@PathVariable(required = false) Long id, Model modelo, Libro libro) {
-		if (id != null) {
-			modelo.addAttribute("libro", libroService.obtenerPorId(id));
-		}
-
-		return "libro";
-	}
-
-	@PostMapping({ "/buscar" })
-	public String buscarLibroNombre(@PathVariable(required = false) String nombre, Model modelo, Libro libro) {
-		String nom=null;
-		if(libroService.findByNombre(libro.getNombre())!=null) {
-			nom = libroService.findByNombre(libro.getNombre()).getNombre();
-		}
-
-
-		if (nom != null) {
-			modelo.addAttribute("libro", libroService.findByNombre(nom));
-			return "libro";
-		}  else {
-			String isbn=null;
-			if(libroService.findByIsbn(libro.getNombre())!=null) {
-				isbn = libroService.findByIsbn(libro.getNombre()).getIsbn();
-			}
-			if (isbn != null) {
-				modelo.addAttribute("libro", libroService.findByIsbn(isbn));
-				return "libro";
-			} else {
-				modelo.addAttribute("mensaje", "No se ha encontrado el libro con ese nombre o ISBN");
-				modelo.addAttribute("nivel", "danger");
-			}
-		}
+	
+	@PostMapping("/registro")
+	public String registro(HttpSession session, @ModelAttribute("usuarioForm") @Valid Usuario usuario, BindingResult bindingResult) {
 		
 
-		return "buscar";
+		if (bindingResult.hasErrors()) {
+			return "login";
+		}
+
+		String password = usuario.getPassword();
+		
+		usuario.setPassword(passwordEncoder.encode(password));
+		
+		usuarioService.insertar(usuario);
+		
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuario.getEmail(), password);
+
+		try {
+			AuthenticationManager authenticationManager = authenticationConfiguration.getAuthenticationManager();
+			Authentication authentication = authenticationManager.authenticate(token);
+			
+			SecurityContext sc = SecurityContextHolder.getContext();
+		    sc.setAuthentication(authentication);
+		    
+		    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+		} catch (Exception e) {
+			log.severe("No se ha podido autenticar");
+			log.throwing(IndexController.class.getName(), "registro", e);
+		}
+		
+		return "redirect:/";
 	}
+
 }
