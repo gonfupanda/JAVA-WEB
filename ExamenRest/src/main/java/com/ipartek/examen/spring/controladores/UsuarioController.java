@@ -45,8 +45,9 @@ public class UsuarioController extends GlobalController{
 	}
 	
 	@PostMapping
-	public String aceptar(@Valid Usuario usuario, BindingResult bindingResult) {
+	public String aceptar(@Valid Usuario usuario, BindingResult bindingResult, Model modelo) {
 		if(bindingResult.hasErrors()) {
+			modelo.addAttribute("roles", servicio.obtenerRoles());
 			return ADMIN_USUARIO;
 		}
 		
