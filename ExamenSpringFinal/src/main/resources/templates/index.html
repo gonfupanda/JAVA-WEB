@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::div})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inmobiliaria</title>
+<style>
+.flex-container {
+	display: flex;
+}
+</style>
+</head>
+<body>
+
+	<div class="flex-container row">
+		<div class="col">
+			<!-- Busqueda por nombre o direccion -->
+			<form th:action="@{/nombre}" method="post" th:object="${inmueble}">
+				<input class="form-control" type="search" name="nombre"
+					placeholder="Buscar por nombre o direccion">
+			</form>
+			<br> <br>
+			<!-- Busqueda por estado con botones -->
+			<div class="btn-group" style="width: 100%">
+				<a th:href="@{/}" class="btn btn-primary active" aria-current="page">Todos</a>
+				<a th:href="@{/alquiler}" class="btn btn-primary">Alquiler</a> <a
+					th:href="@{/ventas}" class="btn btn-primary">Venta</a>
+			</div>
+			<!-- Busqueda precio -->
+			<br> <br> <label><strong>Rango de precio:</strong></label>
+			<form class="row g-3" th:action="@{/precio}" method="post">
+				<div class="col-auto">
+					<input type="number" class="form-control" placeholder="Min"
+						name="min" id="min">
+				</div>
+				<div class="col-auto">
+					<input type="number" class="form-control" placeholder="Max"
+						name="max" id="max">
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary mb-3">Buscar</button>
+				</div>
+			</form>
+
+			<p class="h3"
+				style="width: 100%; background-color: blue; text-align: center; border-radius: 5%;color:white;">
+				Listado Viviendas</p>
+
+			<!-- Listado de viviendas -->
+			<div class="row">
+				<div th:each="inmueble: ${inmuebles}" th:object="${inmueble}"
+					class=" col-sm-6" >
+					<br>
+					<div class="card " >
+						<img th:src="@{/imgs/{fichero}.jpg(fichero=*{id})}" src="..."
+							class="card-img-top" alt="Not found" style="max-height: 3000px;max-width: 300px; ">
+						<h5 class="card-title" th:text="*{nombre}">Card title</h5>
+						<p th:text="${#numbers.formatCurrency(inmueble.precio)}"
+							class="text-muted">Last updated 3 mins ago</p>
+
+						<div class="card-footer">
+							<a class="btn btn-sm btn-primary"
+								th:href="@{/ver/} + ${inmueble.id}" href="#">ver</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+			<div class="col" th:if="${vivienda}" th:object="${vivienda}">
+
+
+				<img th:src="@{/imgs/{fichero}.jpg(fichero=*{id})}" src="..."
+					alt="Not Found" style="height: 300px;">
+
+				
+				<h1 th:text="*{nombre}">nombre</h1>
+				<label>Direccion:</label>
+				<p th:text="*{direccion}">direccion</p>
+				<label>Precio:</label>
+				<p th:text="${#numbers.formatCurrency(vivienda.precio)}">precio</p>
+				<label>Estado:</label>
+				<p th:text="*{estado}">estado</p>
+				<label>Servicio Cocina:</label>
+				<p th:text="*{servicio.nombre}">servicioCocina</p>
+
+
+			</div>
+		
+		<!--  
+	<div th:each="noticia: ${noticias}" th:object="${noticia}" class="col">
+		<div class="card"
+			style="width: 500px; height: 150px; margin-top: 5px; box-shadow: 10px 10px 5px lightblue inset;">
+			<div class="row no-gutters">
+				<div class="col-sm-5">
+					<img class="card-img"
+						th:src="@{/imgs/{fichero}.jpg(fichero=${noticia.id})}" src="..."
+						alt="Not Found"
+						style="max-height: 150px; margin-left: 10px; margin-top: 10px">
+				</div>
+				<div class="col-sm-7">
+					<div class="card-body ajustes">
+						<h5 class="card-title" th:text="${noticia.titulo}">titulo</h5>
+						<p class="card-text" th:text="${noticia.textoCorto}">texto
+							corto</p>
+						<a th:href="'noticia/' + ${noticia.id}" class="btn btn-primary">Ver</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>-->
+</body>
+</html>

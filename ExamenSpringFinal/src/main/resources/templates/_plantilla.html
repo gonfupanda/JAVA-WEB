@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:fragment="plantilla (titulo, contenido)" lang="es"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:replace="${titulo}">Inmobiliaria</title>
+<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+</head>
+<body>
+
+	<nav
+		class="navbar navbar-expand-lg bg-body-tertiary sticky-top navbar-dark bg-primary "
+		data-bs-theme="blue" >
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}">Inmobiliaria Iparhouse</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mb-2 mb-lg-0">		
+						<li class="nav-item"><a class="nav-link" th:href="@{/inmueble}"
+						href="#">Inmueble</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/resumen}"
+						href="#">Resumen Datos</a></li>		
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div th:if="${mensaje}" th:classappend="'alert-' + ${nivel}"
+		class="alert alert-dismissible fade show" role="alert">
+		<span th:text="${mensaje}">Mensaje de la alerta</span>
+		<button type="button" class="btn-close" data-bs-dismiss="alert"
+			aria-label="Close"></button>
+	</div>
+	<div class="container mt-3">
+		<main>
+			<div th:replace="${contenido}">
+				<p>PLANTILLA</p>
+			</div>
+		</main>
+
+	</div>
+	<footer class=" bg-primary text-light py-3 mt-3"> &copy; 2023
+		Gonzalo Padierna Mayo </footer>
+	<script src='/webjars/bootstrap/js/bootstrap.bundle.min.js'></script>
+</body>
+</html>

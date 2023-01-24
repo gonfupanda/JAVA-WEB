@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::div})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inmuebless</title>
+</head>
+<body>
+<div>
+	<h1>Listado por nombre</h1>
+	<table class="table table-sm table-hover table-bordered table-striped">
+		<caption>Inmueble</caption>
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th class="text-end" scope="col">Precio</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p: ${inmuebles}">
+				<td th:text="${p.nombre}">Producto1</td>
+				<td class="text-end" th:text="${#numbers.formatCurrency(p.precio)}">123,12€</td>
+			</tr>
+		</tbody>
+		<tfoot class="table-dark">
+			<tr>
+				<td></td>
+				<td></td>
+
+			</tr>
+		</tfoot>
+	</table>
+	<!-- Primera vivienda con cocina -->
+	<h1>Primera vivienda con servicio de cocina</h1>
+	<div class="col" th:if="${Primercocina}" th:object="${Primercocina}">
+
+		<h1 th:text="*{nombre}">nombre</h1>
+		<label>Direccion:</label>
+		<p th:text="*{direccion}">direccion</p>
+		<label>Precio:</label>
+		<p th:text="${#numbers.formatCurrency(Primercocina.precio)}">precio</p>
+		<label>Estado:</label>
+		<p th:text="*{estado}">estado</p>
+
+	</div>
+	
+	<!-- total 3 habitaciones -->
+	<h1>Precio  total 3 habitaciones o mas </h1>
+	<div class="col" th:if="${total}" th:object="${total}">
+		<p th:text="${#numbers.formatCurrency(total)}">precio</p>
+	</div>
+	
+	<h1>Listado por nombre de servicios</h1>
+	<table class="table table-sm table-hover table-bordered table-striped">
+		<caption>Inmueble</caption>
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="s: ${servicios}">
+				<td th:text="${s.nombre}">Producto1</td>
+			</tr>
+		</tbody>
+		<tfoot class="table-dark">
+			<tr>
+				<td></td>
+
+			</tr>
+		</tfoot>
+	</table>
+
+	
+</div>
+</body>
+</html>

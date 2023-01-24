@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::form})}"
+	lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Inmueble</title>
+</head>
+<body>
+
+	<form th:action="@{/crear}" th:object="${inmueble}" action="#"
+		method="post" enctype="multipart/form-data">
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="id">Id</label>
+			<div class="col-sm-10">
+				<input th:classappend="${#fields.hasErrors('id')} ? is-invalid: ''"
+					class="form-control" readonly placeholder="Id" value="1"
+					th:field="*{id}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('id')}"
+					th:errors="id">Error de id</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="nombre">Nombre</label>
+			<div class="col-sm-10">
+				<input
+					th:classappend="${#fields.hasErrors('nombre')} ? is-invalid: ''"
+					class="form-control" placeholder="Nombre" value="Pepe"
+					th:field="*{nombre}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}"
+					th:errors="*{nombre}">Error de titulo</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="direccion">Direccion</label>
+			<div class="col-sm-10">
+				<input
+					th:classappend="${#fields.hasErrors('direccion')} ? is-invalid: ''"
+					class="form-control" placeholder="direccion" value="Pepe"
+					th:field="*{direccion}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('direccion')}"
+					th:errors="*{textoNoticia}">Error de direccion</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="precio">Precio</label>
+			<div class="col-sm-10">
+				<input type="number"
+					th:classappend="${#fields.hasErrors('precio')} ? is-invalid: ''"
+					class="form-control"  value=""
+					th:field="*{precio}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}"
+					th:errors="*{precio}">Error fecha</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="estado">Estado</label> <select name="estado" id="estado"
+				class="form-select">
+				<option value="venta" selected>Venta</option>
+				<option value="alquiler">Aquiler</option>
+			</select>
+		</div>
+		<div class="row mb-3">
+			<label>Servicios</label>
+			<select th:classappend="${#fields.hasErrors('servicio')} ? is-invalid: ''" class="form-select" name="servicio">
+					<option th:each="r: ${servicios}"
+						th:selected="${r.id == usuario?.rol?.id}"
+						th:value="${r.id}" th:text="${r.nombre}">Nombre de rol</option>
+				</select>	
+		</div>
+
+
+		<div class="row mb-3">
+			<label class="col-sm-2 form-label" for="imagen">Imagen</label>
+			<div class="col-sm-10">
+				<input type="file" name="imagen" accept="image/jpg"
+					class="form-control" placeholder="Imagen"
+					th:src="@{/imgs/{fichero}.jpg(fichero=*{id})}" src="...">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="offset-sm-2 col-sm-10">
+				<button class="btn btn-primary">Aceptar</button>
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>
